@@ -30,7 +30,7 @@ footer{text-align:center;padding:25px;color:#899bb2}
 <button onclick="openStudentPortal()">STUDENT PORTAL</button><button onclick="show('verify')">VERIFY</button><button onclick="show('about')">ABOUT / CONTACT</button>
 </nav>
 <main class="container">
-<section id="home"><div class="card"><h2>Welcome to NOVARA</h2><p>Build practical digital knowledge through independent learning programmes.</p><div class="grid"><div class="tile"><h3>Learn</h3><p>Explore beginner-friendly technology topics.</p></div><div class="tile"><h3>Track</h3><p>Applications and approved student records are managed securely.</p></div><div class="tile"><h3>Complete</h3><p>Eligible learners may receive a NOVARA course completion certificate.</p></div></div><button onclick="show('apply')">APPLY NOW</button><button class="secondary" onclick="show('courses')">VIEW COURSES</button></div><div class="card notice"><b>Important:</b> NOVARA is an independent learning programme, not a government, university, Google, Cisco or accredited professional qualification.</div></section>
+<section id="home"><div class="card"><h2>Welcome to NOVARA</h2><p>Build practical digital knowledge through independent learning programmes.</p><div class="grid"><div class="tile"><h3>Learn</h3><p>Explore beginner-friendly technology topics.</p></div><div class="tile"><h3>Track</h3><p>Students study approved course lessons and request their exam after the 30-day course period.</p></div><div class="tile"><h3>Complete</h3><p>Eligible learners may receive a NOVARA course completion certificate.</p></div></div><button onclick="show('apply')">APPLY NOW</button><button class="secondary" onclick="show('courses')">VIEW COURSES</button></div><div class="card notice"><b>Important:</b> NOVARA is an independent learning programme, not a government, university, Google, Cisco or accredited professional qualification.</div></section>
 <section id="courses" class="hidden"><div class="card"><h2>OUR COURSES</h2><div id="courseList" class="grid"></div></div></section>
 <section id="apply" class="hidden"><div class="card"><h2>APPLY & CREATE STUDENT ACCOUNT</h2><p>Complete this form to create your NOVARA student account. After registration, you will be taken to the course you selected.</p><form onsubmit="applyStudent(event)"><label>Full name</label><input id="appName" required maxlength="100" autocomplete="name"><label>Gmail / Email</label><input id="appEmail" type="email" required maxlength="120" autocomplete="email"><label>Phone number</label><input id="appPhone" type="tel" required maxlength="30" autocomplete="tel"><label>Select course</label><select id="appCourse" required></select><label>Create password (at least 8 characters)</label><input id="appPassword" type="password" minlength="8" required autocomplete="new-password"><button id="applyButton" type="submit">APPLY & ENTER MY COURSE</button></form><p id="applyMessage" role="status"></p><p class="small">WhatsApp is not used for course applications. It is only used when you request your completion exam/certificate.</p></div></section>
 <section id="student" class="hidden">
@@ -38,10 +38,16 @@ footer{text-align:center;padding:25px;color:#899bb2}
 <div id="studentAuthBox">
 <p>Already registered? Sign in below. New students should use the APPLY page to create an account.</p><form onsubmit="studentLogin(event)"><h3>STUDENT LOGIN</h3><label>Gmail / Email used when applying</label><input id="loginEmail" type="email" required autocomplete="username" inputmode="email" placeholder="example@gmail.com"><label>Password</label><input id="loginPassword" type="password" required autocomplete="current-password"><button id="studentLoginButton" type="submit">SIGN IN</button></form>
 <p id="studentAuthMessage" role="status"></p></div>
-<div id="studentDashboard" class="hidden"><h2>MY LEARNING DASHBOARD</h2><p id="studentWelcome"></p><div class="tile" id="studentCourseInfo"></div><div class="tile"><h3>30-DAY COURSE PERIOD</h3><p id="courseTimer"></p><button id="requestExamButton" onclick="requestStudentExam()">REQUEST EXAM</button><p id="examRequestMessage" role="status"></p></div><div class="card"><h3>MY COURSE LESSONS</h3><div id="lessonList"></div></div><button class="secondary" onclick="studentLogout()">LOG OUT</button></div>
+<div id="studentDashboard" class="hidden"><h2>MY LEARNING DASHBOARD</h2><p id="studentWelcome"></p><div class="tile" id="studentCourseInfo"></div><div class="tile"><h3>30-DAY COURSE PERIOD</h3><p id="courseTimer"></p><button id="requestExamButton" onclick="requestStudentExam()">REQUEST EXAM</button><p id="examRequestMessage" role="status"></p></div><div class="card"><h3>MY EXAM RESULT</h3><div id="studentExamResult">No exam result published yet.</div></div><div class="card"><h3>MY CERTIFICATE</h3><div id="studentCertificate">Your certificate will appear here when NOVARA administration issues it.</div></div><div class="card"><h3>MY COURSE LESSONS</h3><div id="lessonList"></div></div><button class="secondary" onclick="studentLogout()">LOG OUT</button></div>
 </div></section>
 <section id="admin" class="hidden"><div class="card"><h2>SECURE ADMIN LOGIN</h2><p class="small">Private administration page. Only an account listed in NOVARA Admins can enter. Sign in with your own Supabase admin email and password. The password is never stored in this website.</p><form id="adminLoginForm" onsubmit="adminLogin(event)"><label>Admin email</label><input id="adminEmail" type="email" autocomplete="username" required><label>Password</label><input id="adminPassword" type="password" autocomplete="current-password" required><button id="adminLoginButton" type="submit">SIGN IN</button></form><button class="secondary" type="button" onclick="sendPasswordReset()">FORGOT PASSWORD?</button><p id="adminMessage" role="status"></p><div id="newPasswordBox" class="hidden"><h3>SET A NEW PASSWORD</h3><form onsubmit="saveNewPassword(event)"><label>New password</label><input id="newPassword" type="password" minlength="8" autocomplete="new-password" required><button type="submit">SAVE NEW PASSWORD</button></form><p id="newPasswordMessage" role="status"></p></div></div>
-<div id="adminPanel" class="hidden"><div class="card"><h2>ADMIN DASHBOARD</h2><div class="stat">Students<br><b id="total">0</b></div><div class="stat">Certificates<br><b id="certTotal">0</b></div><button class="secondary" onclick="adminLogout()">LOG OUT</button></div><div class="card"><h2>REGISTER STUDENT</h2><form onsubmit="addStudent(event)"><label>Full name</label><input id="newName" maxlength="100" required><label>Student ID</label><input id="newStudentId" maxlength="40" placeholder="NVS-2026-001" required><label>Course</label><select id="newCourse"></select><button type="submit">ADD STUDENT</button></form><p id="addMessage" role="status"></p></div><div class="card"><h2>NEW APPLICATIONS</h2><p>Review student applications and choose Accept or Reject. Accepted applicants can continue to their course account.</p><button class="secondary" onclick="loadApplications()">REFRESH APPLICATIONS</button><div id="applicationList" aria-live="polite">Press REFRESH APPLICATIONS to load submissions.</div></div><div class="card"><h2>STUDENT RECORDS</h2><button class="secondary" onclick="loadDashboard()">REFRESH RECORDS</button><div id="studentList"></div></div><div class="card"><h2>EXAM REQUESTS</h2><button class="secondary" onclick="loadExamRequests()">REFRESH REQUESTS</button><div id="examRequestList"></div></div><div class="card"><h2>ISSUE CERTIFICATE</h2><label>Student ID</label><input id="certStudent" placeholder="NVS-2026-001"><button onclick="makeCertificate()">ISSUE CERTIFICATE</button><p id="certMessage" role="status"></p></div></div></section>
+<div id="adminPanel" class="hidden">
+<div class="card"><h2>ADMIN DASHBOARD</h2><div class="stat">Students<br><b id="total">0</b></div><div class="stat">Certificates<br><b id="certTotal">0</b></div><div class="admin-shortcuts" style="display:flex;flex-wrap:wrap;gap:8px;margin:14px 0"><button type="button" onclick="document.getElementById('adminApplicationsCard').scrollIntoView({behavior:'smooth'})">NEW APPLICATIONS</button><button type="button" onclick="document.getElementById('adminStudentsCard').scrollIntoView({behavior:'smooth'})">DELETE STUDENT</button><button type="button" onclick="document.getElementById('adminExamsCard').scrollIntoView({behavior:'smooth'})">EXAM RESULTS</button><button type="button" onclick="document.getElementById('adminCertificatesCard').scrollIntoView({behavior:'smooth'})">CERTIFICATES</button></div><button class="secondary" onclick="adminLogout()">LOG OUT</button></div>
+<div class="card" id="adminApplicationsCard"><h2>NEW APPLICATIONS</h2><p>Review student applications and choose Accept or Reject.</p><button class="secondary" onclick="loadApplications()">REFRESH APPLICATIONS</button><div id="applicationList" aria-live="polite">Press REFRESH APPLICATIONS to load submissions.</div></div>
+<div class="card" id="adminStudentsCard"><h2>STUDENT RECORDS — DELETE STUDENT</h2><p>Review enrolled students. Deleting a student permanently removes their NOVARA account and related records.</p><button class="secondary" onclick="loadAdminStudents()">REFRESH STUDENTS</button><div id="adminStudentList"></div></div>
+<div class="card" id="adminExamsCard"><h2>EXAM REQUESTS & RESULTS</h2><p>Schedule the exam after the 30-day course. Record the score after the exam; students see results 3 days later. Issue a certificate 7 days after a published Pass.</p><button class="secondary" onclick="loadExamRequests()">REFRESH EXAM REQUESTS</button><div id="examRequestList"></div></div>
+<div class="card" id="adminCertificatesCard"><h2>ISSUE CERTIFICATE</h2><p>Certificates can be issued 7 days after a Passed result is published.</p><label>Student ID</label><input id="certStudent" placeholder="NVS-2026-001"><button onclick="makeCertificate()">ISSUE CERTIFICATE</button><p id="certMessage" role="status"></p></div>
+</div></section>
 <section id="verify" class="hidden"><div class="card"><h2>CERTIFICATE VERIFICATION</h2><label>Certificate ID</label><input id="verifyID" placeholder="NOVA-..."><button onclick="verifyCertificate()">VERIFY CERTIFICATE</button><div id="verifyResult" aria-live="polite"></div><p class="small">Verification displays only limited public certificate details.</p></div></section>
 <section id="about" class="hidden"><div class="card"><h2>ABOUT NOVARA</h2><p>NOVARA is an independent learning academy concept focused on introductory digital skills, technology awareness and responsible computing.</p><p><b>Founder &amp; Director:</b> FEYSAL ALI MOHAMED</p><p class="small">Do not claim accreditation unless official approval has been obtained.</p></div><div class="card"><h2>CONTACT US</h2><p>WhatsApp: +254 112 764 746</p><p>Email: fy011276@gmail.com</p><button onclick="window.open('https://wa.me/254112764746','_blank')">CONTACT ON WHATSAPP</button> <a href="mailto:fy011276@gmail.com" style="color:#f0ce7b">SEND EMAIL</a></div></section>
 <section id="certificateSection" class="hidden"><h2 class="noPrint">CERTIFICATE PREVIEW</h2><div id="certificate"></div><div class="noPrint" style="text-align:center"><button onclick="window.print()">PRINT / SAVE PDF</button></div></section>
@@ -222,8 +228,7 @@ async function ensureStudentProfile(user){
  if(existing){
   // Keep the original course start date, but synchronize the approved course.
   if(existing.course!==app.course){
-   const {error:updateError}=await db.from("novara_students").update({course:app.course}) .eq("user_id",user.id);
-   if(updateError)throw new Error("Your application is accepted, but your course profile could not be updated: "+updateError.message);
+   throw new Error("Your approved course does not match your student profile. Please contact NOVARA administration.");
   }
   return;
  }
@@ -248,7 +253,7 @@ async function loadStudentDashboard(user){
   $("studentAuthBox").classList.add("hidden");$("studentDashboard").classList.remove("hidden");
   $("studentWelcome").textContent="Welcome, "+student.full_name+" • "+(student.email||user.email);
   $("studentCourseInfo").innerHTML="<b>Student ID:</b> "+esc(student.student_id)+"<br><b>Course:</b> "+esc(student.course)+"<br><b>Status:</b> "+esc(student.status)+"<br><b>Started:</b> "+esc(student.course_started_at?new Date(student.course_started_at).toLocaleString():"Not recorded");
-  await loadStudentLessons(student);await updateCourseTimer(student);await refreshStudentRequestStatus();msg.textContent="";
+  await loadStudentLessons(student);await updateCourseTimer(student);await refreshStudentRequestStatus();await loadStudentExamResult(user.id);await loadStudentCertificate(user.id);msg.textContent="";
  }catch(err){$("studentAuthBox").classList.remove("hidden");$("studentDashboard").classList.add("hidden");msg.textContent=err.message||"Could not load student profile."}
 }
 async function loadStudentLessons(student){
@@ -285,6 +290,25 @@ async function refreshStudentRequestStatus(){
  const {data,error}=await db.from("novara_exam_requests").select("status").eq("user_id",userData.user.id).maybeSingle();
  if(!error&&data){$("examRequestMessage").textContent="Exam request status: "+data.status+".";$("requestExamButton").disabled=true;}
 }
+async function loadStudentExamResult(userId){
+ const box=$("studentExamResult");box.textContent="Checking your exam result…";
+ try{
+  const {data,error}=await db.from("novara_exam_results").select("course,score,result,remarks,published_at").eq("user_id",userId).lte("published_at",new Date().toISOString()).order("published_at",{ascending:false}).limit(1);
+  if(error)throw error;
+  const r=data&&data[0];
+  if(!r){box.textContent="Your result will be published 3 days after your scheduled exam.";return;}
+  box.innerHTML=`<b>Course:</b> ${esc(r.course)}<br><b>Score:</b> ${esc(r.score)}%<br><b>Result:</b> ${esc(r.result)}<br><b>Feedback:</b> ${esc(r.remarks||"No feedback provided.")}<br><span class="small">Published: ${esc(r.published_at?new Date(r.published_at).toLocaleString():"")}</span>`;
+ }catch(err){box.textContent="Could not load exam result: "+(err.message||"Please try again.");}
+}
+async function loadStudentCertificate(userId){
+ const box=$("studentCertificate");box.textContent="Checking certificate status…";
+ try{
+  const {data,error}=await db.from("novara_certificates").select("certificate_id,course,issued_at,status").eq("user_id",userId).order("issued_at",{ascending:false}).limit(1);
+  if(error)throw error;const c=data&&data[0];
+  box.innerHTML=c?`<b>Status:</b> ${esc(c.status)}<br><b>Course:</b> ${esc(c.course)}<br><b>Certificate ID:</b> ${esc(c.certificate_id)}<br><b>Issued:</b> ${esc(new Date(c.issued_at).toLocaleString())}`:"Your certificate will appear here after you pass the exam and the 7-day waiting period is complete.";
+ }catch(err){box.textContent="Could not load certificate: "+(err.message||"Please try again.");}
+}
+
 async function studentLogout(){
  await db.auth.signOut();studentUserId=null;$("studentDashboard").classList.add("hidden");$("studentAuthBox").classList.remove("hidden");$("studentAuthMessage").textContent="You have signed out.";
 }
@@ -304,7 +328,7 @@ async function setApplicationStatus(encodedGmail,status){
   const gmail=decodeURIComponent(String(encodedGmail||"")).trim().toLowerCase();
   if(!gmail || gmail==="null")throw new Error("This application has no valid Gmail address. Refresh applications and check the record.");
   // Use the applicant Gmail rather than the database id: older application rows may have a NULL id.
-  const {data,error}=await db.from("novara_applications").update({status}).ilike("gmail",gmail).eq("status","Pending").select("full_name,gmail,status");
+  const {data,error}=await db.from("novara_applications").update({status,reviewed_at:new Date().toISOString()}).ilike("gmail",gmail).eq("status","Pending").select("full_name,gmail,status");
   if(error)throw error;
   if(!data||data.length===0)throw new Error("No pending application matched this Gmail. Refresh the list and check its current status.");
   await loadApplications();
@@ -313,14 +337,54 @@ async function setApplicationStatus(encodedGmail,status){
 }
 async function loadExamRequests(){
  const box=$("examRequestList");box.textContent="Loading requests…";
- try{await requireAdmin();const {data,error}=await db.from("novara_exam_requests").select("id,student_id,user_id,course,status,requested_at").order("requested_at",{ascending:false});if(error)throw error;
-  box.innerHTML=(data||[]).map(r=>`<div class="student"><b>${esc(r.course)}</b><br>Student ID: ${esc(r.student_id)}<br>Status: ${esc(r.status)}<br>Requested: ${esc(new Date(r.requested_at).toLocaleString())}<br>${r.status==="pending"?`<button onclick="approveExamRequest('${esc(r.id)}')">APPROVE REQUEST</button>`:""}</div>`).join("")||"No exam requests yet.";
+ try{
+  await requireAdmin();
+  const {data,error}=await db.from("novara_exam_requests").select("id,student_id,user_id,course,status,requested_at,exam_date").order("requested_at",{ascending:false});
+  if(error)throw error;
+  box.innerHTML=(data||[]).map(r=>{
+   const examLocal=r.exam_date?new Date(new Date(r.exam_date).getTime()-new Date(r.exam_date).getTimezoneOffset()*60000).toISOString().slice(0,16):"";
+   return `<div class="student"><b>${esc(r.course)}</b><br>Student ID: ${esc(r.student_id)}<br>Status: ${esc(r.status)}<br>Requested: ${esc(r.requested_at?new Date(r.requested_at).toLocaleString():"")}<br>${String(r.status).toLowerCase()==="pending"?`<label>Schedule exam date and time</label><input type="datetime-local" id="examdate-${esc(r.id)}" value="${examLocal}"><button onclick="approveExamRequest('${esc(r.id)}')">ACCEPT & SCHEDULE EXAM</button>`:""}${String(r.status).toLowerCase()==="approved"&&!r.exam_date?`<label>Schedule exam date and time</label><input type="datetime-local" id="examdate-${esc(r.id)}" value=""><button onclick="approveExamRequest('${esc(r.id)}')">SAVE EXAM DATE</button>`:String(r.status).toLowerCase()==="approved"?`<p><b>Exam date:</b> ${esc(new Date(r.exam_date).toLocaleString())}</p><hr><b>Record exam score after the exam</b><label>Score (0–100)</label><input type="number" id="score-${esc(r.id)}" min="0" max="100" step="1" placeholder="Enter score"><label>Feedback</label><input id="remarks-${esc(r.id)}" maxlength="500" placeholder="Optional feedback"><button onclick="saveExamResult('${esc(r.id)}')">SAVE RESULT (PUBLISH 3 DAYS LATER)</button>`:""}</div>`;
+  }).join("")||"No exam requests yet.";
  }catch(err){box.textContent=err.message||"Could not load exam requests."}
 }
 async function approveExamRequest(id){
- try{await requireAdmin();const {error}=await db.from("novara_exam_requests").update({status:"approved"}).eq("id",id);if(error)throw error;await loadExamRequests();alert("Request approved. Email delivery is not configured yet; the exam has not been emailed.");}
- catch(err){alert(err.message||"Could not approve request.")}
+ try{
+  await requireAdmin();const raw=$("examdate-"+id).value;if(!raw)throw new Error("Choose the exam date and time first.");
+  const examDate=new Date(raw);if(Number.isNaN(examDate.getTime())||examDate.getTime()<Date.now())throw new Error("Choose a future exam date and time.");
+  const {error}=await db.from("novara_exam_requests").update({status:"approved",exam_date:examDate.toISOString()}).eq("id",id);if(error)throw error;
+  await loadExamRequests();alert("Exam scheduled. The student result will become visible 3 days after the exam date.");
+ }catch(err){alert(err.message||"Could not schedule exam.")}
 }
+async function saveExamResult(requestId){
+ try{
+  await requireAdmin();
+  const scoreValue=Number($("score-"+requestId).value),remarks=$("remarks-"+requestId).value.trim();
+  if(!Number.isInteger(scoreValue)||scoreValue<0||scoreValue>100)throw new Error("Enter a whole-number score from 0 to 100.");
+  const {data:req,error:reqError}=await db.from("novara_exam_requests").select("user_id,student_id,course,status,exam_date").eq("id",requestId).single();
+  if(reqError)throw reqError;if(String(req.status).toLowerCase()!=="approved")throw new Error("Accept and schedule the exam first.");
+  if(!req.exam_date)throw new Error("The exam date has not been scheduled.");
+  const examDate=new Date(req.exam_date);if(Date.now()<examDate.getTime())throw new Error("You can record the result after the scheduled exam date.");
+  const result=scoreValue>=50?"Passed":"Failed",publishedAt=new Date(examDate.getTime()+3*86400000).toISOString();
+  const row={exam_request_id:requestId,user_id:req.user_id,student_id:req.student_id,course:req.course,score:scoreValue,result,remarks,published_at:publishedAt};
+  const {error}=await db.from("novara_exam_results").upsert(row,{onConflict:"exam_request_id"});if(error)throw error;
+  if(result==="Passed"){
+   const {error:studentError}=await db.from("novara_students").update({status:"Exam Passed"}).eq("user_id",req.user_id);if(studentError)throw studentError;
+  }
+  await loadExamRequests();alert("Result saved. It will appear in the student's portal 3 days after the exam. Certificate eligibility begins 7 days after the result is published.");
+ }catch(err){alert("Could not save exam result: "+(err.message||"Unknown error"));}
+}
+async function loadAdminStudents(){
+ const box=$("adminStudentList");box.textContent="Loading student records…";
+ try{await requireAdmin();const {data,error}=await db.from("novara_students").select("user_id,student_id,full_name,email,course,status,course_started_at").order("created_at",{ascending:false});if(error)throw error;
+ box.innerHTML=(data||[]).map(s=>`<div class="student"><b>${esc(s.full_name)}</b><br>Student ID: ${esc(s.student_id)}<br>Email: ${esc(s.email)}<br>Course: ${esc(s.course)}<br>Status: ${esc(s.status)}<br><button class="danger" onclick="deleteStudent('${esc(s.user_id)}','${esc(s.student_id||"")}')">DELETE STUDENT</button></div>`).join("")||"No student records found.";
+ }catch(err){box.textContent=err.message||"Could not load students."}
+}
+async function deleteStudent(userId,studentId){
+ if(!confirm("Permanently delete student "+studentId+" and their NOVARA account, exam records and certificate? This cannot be undone."))return;
+ try{await requireAdmin();const {data,error}=await db.rpc("novara_admin_delete_student",{p_user_id:userId});if(error)throw error;alert("Student and related NOVARA records deleted.");await loadAdminStudents();await loadDashboard();}
+ catch(err){alert("Delete failed: "+(err.message||"Unknown error"));}
+}
+
 async function sendPasswordReset(){
  const email=$("adminEmail").value.trim(),msg=$("adminMessage");
  if(!email){msg.textContent="Enter your admin email first.";return}
@@ -356,26 +420,47 @@ async function adminLogin(e){
   if(checkError)throw checkError;
   if(!allowed){await db.auth.signOut();throw new Error("Access denied. This Gmail is not registered as a NOVARA admin.");}
   adminSession=true;$("adminPassword").value="";$("adminPanel").classList.remove("hidden");$("adminLoginForm").classList.add("hidden");
-  msg.textContent="Admin access verified.";await loadDashboard();await loadApplications();await loadExamRequests();
+  msg.textContent="Admin access verified.";await loadDashboard();await loadApplications();await loadExamRequests();await loadAdminStudents();
  }catch(err){await db.auth.signOut();adminSession=false;$("adminPanel").classList.add("hidden");$("adminLoginForm").classList.remove("hidden");msg.textContent=err.message||"Login failed. Check your admin details.";}
  finally{btn.disabled=false;}
 }
 async function adminLogout(){await db.auth.signOut();adminSession=false;$("adminPanel").classList.add("hidden");$("adminLoginForm").classList.remove("hidden");$("adminPassword").value="";$("adminMessage").textContent="You have been signed out. Sign in again to manage NOVARA."}
 async function requireAdmin(){const {data:{user}}=await db.auth.getUser();if(!user||!adminSession)throw new Error("Please sign in as a NOVARA admin first.");const {data,error}=await db.from("novara_admins").select("user_id").eq("user_id",user.id).maybeSingle();if(error)throw error;if(!data)throw new Error("Admin permission was not found.")}
-async function loadDashboard(){try{await requireAdmin();const [{data:students,error:sErr},{data:certs,error:cErr}]=await Promise.all([db.from("novara_students").select("full_name,student_id,course,status,created_at").order("created_at",{ascending:false}),db.from("novara_certificates").select("certificate_id,student_id,course,issued_at,status").order("issued_at",{ascending:false})]);if(sErr)throw sErr;if(cErr)throw cErr;$("total").textContent=students.length;$("certTotal").textContent=certs.length;$("studentList").innerHTML=students.map(s=>`<div class="student"><b>${esc(s.full_name)}</b><br>ID: ${esc(s.student_id)}<br>Course: ${esc(s.course)}<br>Status: ${esc(s.status)}<br><button onclick="markDone('${esc(s.student_id)}')">MARK COMPLETED</button> <button class="secondary" onclick="deleteStudent('${esc(s.student_id)}','${esc(s.full_name)}')" style="background:#a32626;color:#fff">DELETE STUDENT</button></div>`).join("")||"No student records yet."}catch(err){$("studentList").textContent=err.message||"Could not load records."}}
-async function addStudent(e){e.preventDefault();const out=$("addMessage");try{await requireAdmin();const row={full_name:$("newName").value.trim(),student_id:$("newStudentId").value.trim(),course:$("newCourse").value,status:"Registered"};const {error}=await db.from("novara_students").insert(row);if(error)throw error;out.textContent="Student record saved securely.";$("newName").value="";$("newStudentId").value="";await loadDashboard()}catch(err){out.textContent=err.message||"Could not add student."}}
-async function markDone(id){try{await requireAdmin();const {error}=await db.from("novara_students").update({status:"Completed"}).eq("student_id",id);if(error)throw error;await loadDashboard()}catch(err){alert(err.message||"Could not update student.")}}
-async function deleteStudent(id,name){
+async function loadDashboard(){
  try{
   await requireAdmin();
-  if(!confirm(`Delete student record for ${name} (ID: ${id})? This action cannot be undone.`))return;
-  const {error}=await db.from("novara_students").delete().eq("student_id",id);
-  if(error)throw error;
-  alert("Student record deleted successfully.");
-  await loadDashboard();
- }catch(err){alert(err.message||"Could not delete student. Check admin DELETE permission and related records.")}
+  const [{data:students,error:sErr},{data:certs,error:cErr}]=await Promise.all([
+   db.from("novara_students").select("student_id"),
+   db.from("novara_certificates").select("certificate_id")
+  ]);
+  if(sErr)throw sErr;if(cErr)throw cErr;
+  $("total").textContent=(students||[]).length;
+  $("certTotal").textContent=(certs||[]).length;
+ }catch(err){$("total").textContent="—";$("certTotal").textContent="—";$("adminMessage").textContent=err.message||"Could not load dashboard totals."}
 }
-async function makeCertificate(){const out=$("certMessage");try{await requireAdmin();const id=$("certStudent").value.trim();if(!id)throw new Error("Enter a student ID.");const {data:s,error:sErr}=await db.from("novara_students").select("full_name,student_id,course,status").eq("student_id",id).maybeSingle();if(sErr)throw sErr;if(!s)throw new Error("Student record not found.");if(s.status!=="Completed")throw new Error("Mark the student Completed first.");const certificateId="NOVA-"+Date.now().toString(36).toUpperCase();const row={certificate_id:certificateId,student_id:s.student_id,course:s.course,status:"Issued"};const {error}=await db.from("novara_certificates").insert(row);if(error)throw error;out.textContent="Certificate issued: "+certificateId;displayCert({id:certificateId,name:s.full_name,course:s.course,date:new Date().toLocaleDateString()});show("certificateSection");await loadDashboard()}catch(err){out.textContent=err.message||"Could not issue certificate."}}
+
+
+
+async function makeCertificate(){
+ const out=$("certMessage");
+ try{
+  await requireAdmin();
+  const id=$("certStudent").value.trim();if(!id)throw new Error("Enter a student ID.");
+  const {data:s,error:sErr}=await db.from("novara_students").select("full_name,student_id,user_id,course,status").eq("student_id",id).maybeSingle();
+  if(sErr)throw sErr;if(!s)throw new Error("Student record not found.");
+  const {data:exam,error:examError}=await db.from("novara_exam_results").select("result,score,published_at").eq("user_id",s.user_id).lte("published_at",new Date().toISOString()).order("published_at",{ascending:false}).limit(1);
+  if(examError)throw examError;
+  if(!exam||!exam[0]||exam[0].result!=="Passed")throw new Error("A published Passed exam result is required before issuing a certificate.");
+  const eligibleAt=new Date(new Date(exam[0].published_at).getTime()+7*86400000);if(Date.now()<eligibleAt.getTime())throw new Error("Certificate can be issued 7 days after result publication: "+eligibleAt.toLocaleString());
+  const {data:existingCert,error:existingError}=await db.from("novara_certificates").select("certificate_id").eq("user_id",s.user_id).limit(1);if(existingError)throw existingError;if(existingCert&&existingCert.length)throw new Error("This student already has a certificate: "+existingCert[0].certificate_id);
+  const certificateId="NOVA-"+Date.now().toString(36).toUpperCase();
+  const row={certificate_id:certificateId,student_id:s.student_id,user_id:s.user_id,course:s.course,status:"Issued"};
+  const {error}=await db.from("novara_certificates").insert(row);if(error)throw error;
+  out.textContent="Certificate issued: "+certificateId;
+  displayCert({id:certificateId,name:s.full_name,course:s.course,date:new Date().toLocaleDateString()});
+  show("certificateSection");await loadDashboard();
+ }catch(err){out.textContent=err.message||"Could not issue certificate."}
+}
 function displayCert(c){$("certificate").innerHTML=`<p>NOVARA INSTITUTE OF TECHNOLOGY</p><div class="seal">NOVARA<br>INSTITUTE</div><h1>CERTIFICATE OF COMPLETION</h1><p>This certificate is presented to</p><h1>${esc(c.name)}</h1><p>For completing the independent learning programme</p><h2>${esc(c.course)}</h2><p>Certificate ID: ${esc(c.id)}</p><p>Date issued: ${esc(c.date)}</p><br><p>Founder &amp; Director</p><h3>FEYSAL ALI MOHAMED</h3><hr><p><b>Independent, non-accredited learning programme.</b></p><p>This confirms completion of NOVARA's own course. It is not a government, university or third-party professional qualification.</p>`}
 async function verifyCertificate(){const out=$("verifyResult"),id=$("verifyID").value.trim();out.textContent="Checking certificate…";if(!id){out.textContent="Enter a certificate ID.";return}try{const {data,error}=await db.rpc("novara_verify_certificate",{p_certificate_id:id});if(error)throw error;const c=Array.isArray(data)?data[0]:data;if(!c){out.innerHTML="<p>No valid certificate record found.</p>";return}out.innerHTML=`<div class="student"><h3>VALID CERTIFICATE RECORD</h3><p>Student ID: ${esc(c.student_id)}</p><p>Course: ${esc(c.course)}</p><p>Issued: ${esc(c.issued_at||"Recorded")}</p><p>Status: ${esc(c.status)}</p></div>`}catch(err){out.textContent="Verification setup is not complete yet. Admin can still manage records. Details: "+(err.message||"Unknown error")}}
 fillSelects();renderCourses();
