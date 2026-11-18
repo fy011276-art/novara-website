@@ -27,7 +27,7 @@ footer{text-align:center;padding:25px;color:#899bb2}
 <header><div class="logo">NOVARA</div><h1>INSTITUTE OF TECHNOLOGY</h1><p>Education • Technology • Innovation</p><p>Independent Online Learning Academy</p></header>
 <nav>
 <button onclick="show('home')">HOME</button><button onclick="show('courses')">COURSES</button><button onclick="show('apply')">APPLY</button>
-<button onclick="openStudentPortal()">STUDENT PORTAL</button><button onclick="show('admin')">ADMIN</button><button onclick="show('verify')">VERIFY</button><button onclick="show('about')">ABOUT / CONTACT</button>
+<button onclick="openStudentPortal()">STUDENT PORTAL</button><button onclick="show('verify')">VERIFY</button><button onclick="show('about')">ABOUT / CONTACT</button>
 </nav>
 <main class="container">
 <section id="home"><div class="card"><h2>Welcome to NOVARA</h2><p>Build practical digital knowledge through independent learning programmes.</p><div class="grid"><div class="tile"><h3>Learn</h3><p>Explore beginner-friendly technology topics.</p></div><div class="tile"><h3>Track</h3><p>Applications and approved student records are managed securely.</p></div><div class="tile"><h3>Complete</h3><p>Eligible learners may receive a NOVARA course completion certificate.</p></div></div><button onclick="show('apply')">APPLY NOW</button><button class="secondary" onclick="show('courses')">VIEW COURSES</button></div><div class="card notice"><b>Important:</b> NOVARA is an independent learning programme, not a government, university, Google, Cisco or accredited professional qualification.</div></section>
@@ -40,7 +40,7 @@ footer{text-align:center;padding:25px;color:#899bb2}
 <p id="studentAuthMessage" role="status"></p></div>
 <div id="studentDashboard" class="hidden"><h2>MY LEARNING DASHBOARD</h2><p id="studentWelcome"></p><div class="tile" id="studentCourseInfo"></div><div class="tile"><h3>30-DAY COURSE PERIOD</h3><p id="courseTimer"></p><button id="requestExamButton" onclick="requestStudentExam()">REQUEST EXAM</button><p id="examRequestMessage" role="status"></p></div><div class="card"><h3>MY COURSE LESSONS</h3><div id="lessonList"></div></div><button class="secondary" onclick="studentLogout()">LOG OUT</button></div>
 </div></section>
-<section id="admin" class="hidden"><div class="card"><h2>SECURE ADMIN LOGIN</h2><p class="small">Sign in using the admin email and password created in Supabase Authentication. The password is never stored in this website.</p><form id="adminLoginForm" onsubmit="adminLogin(event)"><label>Admin email</label><input id="adminEmail" type="email" autocomplete="username" required><label>Password</label><input id="adminPassword" type="password" autocomplete="current-password" required><button id="adminLoginButton" type="submit">SIGN IN</button></form><button class="secondary" type="button" onclick="sendPasswordReset()">FORGOT PASSWORD?</button><p id="adminMessage" role="status"></p><div id="newPasswordBox" class="hidden"><h3>SET A NEW PASSWORD</h3><form onsubmit="saveNewPassword(event)"><label>New password</label><input id="newPassword" type="password" minlength="8" autocomplete="new-password" required><button type="submit">SAVE NEW PASSWORD</button></form><p id="newPasswordMessage" role="status"></p></div></div>
+<section id="admin" class="hidden"><div class="card"><h2>SECURE ADMIN LOGIN</h2><p class="small">Private administration page. Only an account listed in NOVARA Admins can enter. Sign in with your own Supabase admin email and password. The password is never stored in this website.</p><form id="adminLoginForm" onsubmit="adminLogin(event)"><label>Admin email</label><input id="adminEmail" type="email" autocomplete="username" required><label>Password</label><input id="adminPassword" type="password" autocomplete="current-password" required><button id="adminLoginButton" type="submit">SIGN IN</button></form><button class="secondary" type="button" onclick="sendPasswordReset()">FORGOT PASSWORD?</button><p id="adminMessage" role="status"></p><div id="newPasswordBox" class="hidden"><h3>SET A NEW PASSWORD</h3><form onsubmit="saveNewPassword(event)"><label>New password</label><input id="newPassword" type="password" minlength="8" autocomplete="new-password" required><button type="submit">SAVE NEW PASSWORD</button></form><p id="newPasswordMessage" role="status"></p></div></div>
 <div id="adminPanel" class="hidden"><div class="card"><h2>ADMIN DASHBOARD</h2><div class="stat">Students<br><b id="total">0</b></div><div class="stat">Certificates<br><b id="certTotal">0</b></div><button class="secondary" onclick="adminLogout()">LOG OUT</button></div><div class="card"><h2>REGISTER STUDENT</h2><form onsubmit="addStudent(event)"><label>Full name</label><input id="newName" maxlength="100" required><label>Student ID</label><input id="newStudentId" maxlength="40" placeholder="NVS-2026-001" required><label>Course</label><select id="newCourse"></select><button type="submit">ADD STUDENT</button></form><p id="addMessage" role="status"></p></div><div class="card"><h2>NEW APPLICATIONS</h2><p>Review student applications and choose Accept or Reject. Accepted applicants can continue to their course account.</p><button class="secondary" onclick="loadApplications()">REFRESH APPLICATIONS</button><div id="applicationList" aria-live="polite">Press REFRESH APPLICATIONS to load submissions.</div></div><div class="card"><h2>STUDENT RECORDS</h2><button class="secondary" onclick="loadDashboard()">REFRESH RECORDS</button><div id="studentList"></div></div><div class="card"><h2>EXAM REQUESTS</h2><button class="secondary" onclick="loadExamRequests()">REFRESH REQUESTS</button><div id="examRequestList"></div></div><div class="card"><h2>ISSUE CERTIFICATE</h2><label>Student ID</label><input id="certStudent" placeholder="NVS-2026-001"><button onclick="makeCertificate()">ISSUE CERTIFICATE</button><p id="certMessage" role="status"></p></div></div></section>
 <section id="verify" class="hidden"><div class="card"><h2>CERTIFICATE VERIFICATION</h2><label>Certificate ID</label><input id="verifyID" placeholder="NOVA-..."><button onclick="verifyCertificate()">VERIFY CERTIFICATE</button><div id="verifyResult" aria-live="polite"></div><p class="small">Verification displays only limited public certificate details.</p></div></section>
 <section id="about" class="hidden"><div class="card"><h2>ABOUT NOVARA</h2><p>NOVARA is an independent learning academy concept focused on introductory digital skills, technology awareness and responsible computing.</p><p><b>Founder &amp; Director:</b> FEYSAL ALI MOHAMED</p><p class="small">Do not claim accreditation unless official approval has been obtained.</p></div><div class="card"><h2>CONTACT US</h2><p>WhatsApp: +254 112 764 746</p><p>Email: fy011276@gmail.com</p><button onclick="window.open('https://wa.me/254112764746','_blank')">CONTACT ON WHATSAPP</button> <a href="mailto:fy011276@gmail.com" style="color:#f0ce7b">SEND EMAIL</a></div></section>
@@ -160,7 +160,17 @@ const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
 let adminSession=false;
 let studentUserId=null; // Current authenticated student UUID, used by portal actions.
 function esc(v){return String(v??"").replace(/[&<>"']/g,x=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[x]))}
-function show(id){document.querySelectorAll("main>section").forEach(s=>s.classList.add("hidden"));$(id).classList.remove("hidden");if(id==="admin"&&!adminSession){$("adminPanel").classList.add("hidden")}window.scrollTo(0,0)}
+function show(id){
+ if(id==="admin"){
+  // Admin is available only through the private route and always starts at the login screen.
+  if(!adminSession){$("adminPanel").classList.add("hidden");$("adminLoginForm").classList.remove("hidden");}
+  if(location.hash!=="#admin")history.replaceState(null,"",location.pathname+location.search+"#admin");
+ }else if(location.hash==="#admin"){
+  history.replaceState(null,"",location.pathname+location.search);
+ }
+ document.querySelectorAll("main>section").forEach(s=>s.classList.add("hidden"));
+ $(id).classList.remove("hidden");window.scrollTo(0,0);
+}
 function fillSelects(){["appCourse","newCourse"].forEach(id=>$(id).innerHTML=COURSES.map(c=>`<option value="${esc(c[0])}">${esc(c[0])}</option>`).join(""))}
 function renderCourses(){$("courseList").innerHTML=COURSES.map(c=>`<div class="tile"><h3>${esc(c[0])}</h3><p>${esc(c[1])}</p><p class="small">Beginner level • 4 introductory lessons</p><button onclick="show('apply');$('appCourse').value='${esc(c[0])}'">ENROL IN COURSE</button></div>`).join("")}
 async function applyStudent(e){
@@ -195,11 +205,10 @@ async function ensureStudentProfile(user){
  if(!email)throw new Error("Your signed-in account has no email address. Sign in with the Gmail used on your NOVARA application.");
  const {data:apps,error:appError}=await db.from("novara_applications")
   .select("full_name,gmail,phone_number,course,status,created_at")
-  .order("created_at",{ascending:false});
- if(appError)throw new Error("Could not check your NOVARA application: "+appError.message+". Run the NOVARA application SELECT-policy SQL in Supabase.");
- // RLS should return only this student's own application(s); trim spaces and ignore Gmail case.
- const app=(apps||[]).find(a=>String(a.gmail||"").trim().toLowerCase()===email);
- if(!app)throw new Error("NOVARA cannot see an application for "+email+". Check that Admin Dashboard shows this exact Gmail, then run the NOVARA application SELECT-policy SQL in Supabase so students can read their own application.");
+  .ilike("gmail",email).order("created_at",{ascending:false}).limit(1);
+ if(appError)throw new Error("Could not check your NOVARA application: "+appError.message+". Check the novara_applications SELECT policy in Supabase.");
+ const app=apps&&apps[0];
+ if(!app)throw new Error("No NOVARA application was found for "+email+". Sign in using the same Gmail you used when applying.");
  const approval=String(app.status||"").trim().toLowerCase();
  if(approval!=="accepted"){
   if(approval==="rejected")throw new Error("Your NOVARA application was rejected. Please contact the administration.");
@@ -337,8 +346,21 @@ async function saveNewPassword(e){
   $("adminPanel").classList.add("hidden");
  }catch(err){msg.textContent=err.message||"Could not update password."}
 }
-async function adminLogin(e){e.preventDefault();const btn=$("adminLoginButton"),msg=$("adminMessage");btn.disabled=true;msg.textContent="Signing in securely…";try{const {data,error}=await db.auth.signInWithPassword({email:$("adminEmail").value.trim(),password:$("adminPassword").value});if(error)throw error;const {data:allowed,error:checkError}=await db.from("novara_admins").select("user_id").eq("user_id",data.user.id).maybeSingle();if(checkError)throw checkError;if(!allowed){await db.auth.signOut();throw new Error("This account is not registered as a NOVARA admin.")};adminSession=true;$("adminPassword").value="";$("adminPanel").classList.remove("hidden");msg.textContent="Admin access verified.";await loadDashboard();await loadApplications();await loadExamRequests()}catch(err){msg.textContent=err.message||"Login failed. Check your details and try again."}finally{btn.disabled=false}}
-async function adminLogout(){await db.auth.signOut();adminSession=false;$("adminPanel").classList.add("hidden");$("adminPassword").value="";$("adminMessage").textContent="You have been signed out."}
+async function adminLogin(e){
+ e.preventDefault();const btn=$("adminLoginButton"),msg=$("adminMessage");btn.disabled=true;msg.textContent="Verifying admin credentials and role…";
+ try{
+  await db.auth.signOut();adminSession=false;
+  const {data,error}=await db.auth.signInWithPassword({email:$("adminEmail").value.trim(),password:$("adminPassword").value});
+  if(error)throw error;
+  const {data:allowed,error:checkError}=await db.from("novara_admins").select("user_id").eq("user_id",data.user.id).maybeSingle();
+  if(checkError)throw checkError;
+  if(!allowed){await db.auth.signOut();throw new Error("Access denied. This Gmail is not registered as a NOVARA admin.");}
+  adminSession=true;$("adminPassword").value="";$("adminPanel").classList.remove("hidden");$("adminLoginForm").classList.add("hidden");
+  msg.textContent="Admin access verified.";await loadDashboard();await loadApplications();await loadExamRequests();
+ }catch(err){await db.auth.signOut();adminSession=false;$("adminPanel").classList.add("hidden");$("adminLoginForm").classList.remove("hidden");msg.textContent=err.message||"Login failed. Check your admin details.";}
+ finally{btn.disabled=false;}
+}
+async function adminLogout(){await db.auth.signOut();adminSession=false;$("adminPanel").classList.add("hidden");$("adminLoginForm").classList.remove("hidden");$("adminPassword").value="";$("adminMessage").textContent="You have been signed out. Sign in again to manage NOVARA."}
 async function requireAdmin(){const {data:{user}}=await db.auth.getUser();if(!user||!adminSession)throw new Error("Please sign in as a NOVARA admin first.");const {data,error}=await db.from("novara_admins").select("user_id").eq("user_id",user.id).maybeSingle();if(error)throw error;if(!data)throw new Error("Admin permission was not found.")}
 async function loadDashboard(){try{await requireAdmin();const [{data:students,error:sErr},{data:certs,error:cErr}]=await Promise.all([db.from("novara_students").select("full_name,student_id,course,status,created_at").order("created_at",{ascending:false}),db.from("novara_certificates").select("certificate_id,student_id,course,issued_at,status").order("issued_at",{ascending:false})]);if(sErr)throw sErr;if(cErr)throw cErr;$("total").textContent=students.length;$("certTotal").textContent=certs.length;$("studentList").innerHTML=students.map(s=>`<div class="student"><b>${esc(s.full_name)}</b><br>ID: ${esc(s.student_id)}<br>Course: ${esc(s.course)}<br>Status: ${esc(s.status)}<br><button onclick="markDone('${esc(s.student_id)}')">MARK COMPLETED</button> <button class="secondary" onclick="deleteStudent('${esc(s.student_id)}','${esc(s.full_name)}')" style="background:#a32626;color:#fff">DELETE STUDENT</button></div>`).join("")||"No student records yet."}catch(err){$("studentList").textContent=err.message||"Could not load records."}}
 async function addStudent(e){e.preventDefault();const out=$("addMessage");try{await requireAdmin();const row={full_name:$("newName").value.trim(),student_id:$("newStudentId").value.trim(),course:$("newCourse").value,status:"Registered"};const {error}=await db.from("novara_students").insert(row);if(error)throw error;out.textContent="Student record saved securely.";$("newName").value="";$("newStudentId").value="";await loadDashboard()}catch(err){out.textContent=err.message||"Could not add student."}}
@@ -363,6 +385,21 @@ db.auth.onAuthStateChange((event)=>{
   $("adminMessage").textContent="Recovery link accepted. Set your new password below.";
  }
 });
-// Restore a valid existing admin session only after checking its database role.
-(async()=>{try{const {data:{user}}=await db.auth.getUser();if(user){const {data}=await db.from("novara_admins").select("user_id").eq("user_id",user.id).maybeSingle();if(data){adminSession=true;$("adminPanel").classList.remove("hidden");await loadDashboard();await loadExamRequests()}}}catch(_){}})();
+// Never restore the admin dashboard automatically on page load.
+// A fresh email/password sign-in is required in each new page session.
+(async()=>{
+ if(location.hash==="#admin") show("admin");
+ else show("home");
+ try{
+  const {data:{user}}=await db.auth.getUser();
+  if(user){
+   const {data:admin}=await db.from("novara_admins").select("user_id").eq("user_id",user.id).maybeSingle();
+   if(admin){await db.auth.signOut();}
+  }
+ }catch(_){/* Public pages remain available if the session check is unavailable. */}
+})();
+window.addEventListener("hashchange",()=>{
+ if(location.hash==="#admin") show("admin");
+ else if(location.hash==="") show("home");
+});
 </script></body></html>
