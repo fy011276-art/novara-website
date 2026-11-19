@@ -1,8 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>NOVARA Institute of Technology</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NOVARA Institute of Technology | Online Learning</title>
+<meta name="description" content="NOVARA is an independent online learning academy offering introductory courses in IT, computer applications, cybersecurity, networking and ethical hacking fundamentals.">
+<meta name="robots" content="index,follow">
+<meta name="googlebot" content="index,follow">
+<link rel="canonical" href="https://novara-search.netlify.app/">
+<meta name="theme-color" content="#080f1c">
+<meta property="og:type" content="website">
+<meta property="og:title" content="NOVARA Institute of Technology">
+<meta property="og:description" content="Explore independent online learning programmes in technology and digital skills at NOVARA.">
+<meta property="og:url" content="https://novara-search.netlify.app/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NOVARA Institute of Technology">
+<meta name="twitter:description" content="Independent online learning programmes in technology and digital skills.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  "name": "NOVARA Institute of Technology",
+  "url": "https://novara-search.netlify.app/",
+  "description": "An independent online learning academy offering introductory technology and digital skills programmes."
+}
+</script>
 <style>
 :root{--g:#dfba62;--p:#172840;--l:#304761}*{box-sizing:border-box}
 body{margin:0;background:#080f1c;color:#f5f7fb;font-family:Arial,sans-serif;line-height:1.5}
@@ -27,27 +49,21 @@ footer{text-align:center;padding:25px;color:#899bb2}
 <header><div class="logo">NOVARA</div><h1>INSTITUTE OF TECHNOLOGY</h1><p>Education • Technology • Innovation</p><p>Independent Online Learning Academy</p></header>
 <nav>
 <button onclick="show('home')">HOME</button><button onclick="show('courses')">COURSES</button><button onclick="show('apply')">APPLY</button>
-<button onclick="openStudentPortal()">STUDENT PORTAL</button><button onclick="show('verify')">VERIFY</button><button onclick="show('about')">ABOUT / CONTACT</button>
+<button onclick="openStudentPortal()">STUDENT PORTAL</button><button id="adminNavButton" class="hidden" onclick="show('admin')">ADMIN</button><button onclick="show('verify')">VERIFY</button><button onclick="show('about')">ABOUT / CONTACT</button>
 </nav>
 <main class="container">
-<section id="home"><div class="card"><h2>Welcome to NOVARA</h2><p>Build practical digital knowledge through independent learning programmes.</p><div class="grid"><div class="tile"><h3>Learn</h3><p>Explore beginner-friendly technology topics.</p></div><div class="tile"><h3>Track</h3><p>Students study approved course lessons and request their exam after the 30-day course period.</p></div><div class="tile"><h3>Complete</h3><p>Eligible learners may receive a NOVARA course completion certificate.</p></div></div><button onclick="show('apply')">APPLY NOW</button><button class="secondary" onclick="show('courses')">VIEW COURSES</button></div><div class="card notice"><b>Important:</b> NOVARA is an independent learning programme, not a government, university, Google, Cisco or accredited professional qualification.</div></section>
+<section id="home"><div class="card"><h2>Welcome to NOVARA</h2><p>Build practical digital knowledge through independent learning programmes.</p><div class="grid"><div class="tile"><h3>Learn</h3><p>Explore beginner-friendly technology topics.</p></div><div class="tile"><h3>Track</h3><p>Applications and approved student records are managed securely.</p></div><div class="tile"><h3>Complete</h3><p>Eligible learners may receive a NOVARA course completion certificate.</p></div></div><button onclick="show('apply')">APPLY NOW</button><button class="secondary" onclick="show('courses')">VIEW COURSES</button></div><div class="card notice"><b>Important:</b> NOVARA is an independent learning programme, not a government, university, Google, Cisco or accredited professional qualification.</div></section>
 <section id="courses" class="hidden"><div class="card"><h2>OUR COURSES</h2><div id="courseList" class="grid"></div></div></section>
-<section id="apply" class="hidden"><div class="card"><h2>APPLY & CREATE STUDENT ACCOUNT</h2><p>Complete this form to create your NOVARA student account. After registration, you will be taken to the course you selected.</p><form onsubmit="applyStudent(event)"><label>Full name</label><input id="appName" required maxlength="100" autocomplete="name"><label>Gmail / Email</label><input id="appEmail" type="email" required maxlength="120" autocomplete="email"><label>Phone number</label><input id="appPhone" type="tel" required maxlength="30" autocomplete="tel"><label>Select course</label><select id="appCourse" required></select><label>Create password (at least 8 characters)</label><input id="appPassword" type="password" minlength="8" required autocomplete="new-password"><button id="applyButton" type="submit">APPLY & ENTER MY COURSE</button></form><p id="applyMessage" role="status"></p><p class="small">WhatsApp is not used for course applications. It is only used when you request your completion exam/certificate.</p></div></section>
+<section id="apply" class="hidden"><div class="card"><h2>APPLY & CREATE STUDENT ACCOUNT</h2><p>Enter your name, email, phone and chosen course, then create a password. NOVARA creates your Student ID. Your course opens after the Admin accepts your application.</p><form onsubmit="applyStudent(event)"><label>Full name</label><input id="appName" required maxlength="100" autocomplete="name"><label>Gmail / Email</label><input id="appEmail" type="email" required maxlength="120" autocomplete="email"><label>Phone number</label><input id="appPhone" type="tel" required maxlength="30" autocomplete="tel"><label>Select course</label><select id="appCourse" required></select><label>Create password (at least 8 characters)</label><input id="appPassword" type="password" minlength="8" required autocomplete="new-password"><button id="applyButton" type="submit">APPLY & ENTER MY COURSE</button></form><p id="applyMessage" role="status"></p><p class="small">WhatsApp is not used for course applications. It is only used when you request your completion exam/certificate.</p></div></section>
 <section id="student" class="hidden">
 <div class="card"><h2>NOVARA STUDENT ACCOUNT</h2><p>Create an account using your email, then sign in to access your selected course.</p>
 <div id="studentAuthBox">
-<p>Already registered? Sign in below. New students should use the APPLY page to create an account.</p><form onsubmit="studentLogin(event)"><h3>STUDENT LOGIN</h3><label>Gmail / Email used when applying</label><input id="loginEmail" type="email" required autocomplete="username" inputmode="email" placeholder="example@gmail.com"><label>Password</label><input id="loginPassword" type="password" required autocomplete="current-password"><button id="studentLoginButton" type="submit">SIGN IN</button></form>
+<p>Already registered? Sign in below. New students should use the APPLY page to create an account.</p><form onsubmit="studentLogin(event)"><h3>STUDENT LOGIN</h3><label>Email</label><input id="loginEmail" type="email" required autocomplete="username"><label>Password</label><input id="loginPassword" type="password" required autocomplete="current-password"><button id="studentLoginButton" type="submit">SIGN IN</button></form>
 <p id="studentAuthMessage" role="status"></p></div>
-<div id="studentDashboard" class="hidden"><h2>MY LEARNING DASHBOARD</h2><p id="studentWelcome"></p><div class="tile" id="studentCourseInfo"></div><div class="tile"><h3>30-DAY COURSE PERIOD</h3><p id="courseTimer"></p><button id="requestExamButton" onclick="requestStudentExam()">REQUEST EXAM</button><p id="examRequestMessage" role="status"></p></div><div class="card"><h3>MY EXAM RESULT</h3><div id="studentExamResult">No exam result published yet.</div></div><div class="card"><h3>MY CERTIFICATE</h3><div id="studentCertificate">Your certificate will appear here when NOVARA administration issues it.</div></div><div class="card"><h3>MY COURSE LESSONS</h3><div id="lessonList"></div></div><button class="secondary" onclick="studentLogout()">LOG OUT</button></div>
+<div id="studentDashboard" class="hidden"><h2>MY LEARNING DASHBOARD</h2><p id="studentWelcome"></p><div class="tile" id="studentCourseInfo"></div><div class="tile"><h3>30-DAY COURSE PERIOD</h3><p id="courseTimer"></p><button id="requestExamButton" onclick="requestStudentExam()">REQUEST EXAM</button><p id="examRequestMessage" role="status"></p></div><div class="card"><h3>MY COURSE LESSONS</h3><div id="lessonList"></div></div><button class="secondary" onclick="studentLogout()">LOG OUT</button></div>
 </div></section>
-<section id="admin" class="hidden"><div class="card"><h2>SECURE ADMIN LOGIN</h2><p class="small">Private administration page. Only an account listed in NOVARA Admins can enter. Sign in with your own Supabase admin email and password. The password is never stored in this website.</p><form id="adminLoginForm" onsubmit="adminLogin(event)"><label>Admin email</label><input id="adminEmail" type="email" autocomplete="username" required><label>Password</label><input id="adminPassword" type="password" autocomplete="current-password" required><button id="adminLoginButton" type="submit">SIGN IN</button></form><button class="secondary" type="button" onclick="sendPasswordReset()">FORGOT PASSWORD?</button><p id="adminMessage" role="status"></p><div id="newPasswordBox" class="hidden"><h3>SET A NEW PASSWORD</h3><form onsubmit="saveNewPassword(event)"><label>New password</label><input id="newPassword" type="password" minlength="8" autocomplete="new-password" required><button type="submit">SAVE NEW PASSWORD</button></form><p id="newPasswordMessage" role="status"></p></div></div>
-<div id="adminPanel" class="hidden">
-<div class="card"><h2>ADMIN DASHBOARD</h2><div class="stat">Students<br><b id="total">0</b></div><div class="stat">Certificates<br><b id="certTotal">0</b></div><div class="admin-shortcuts" style="display:flex;flex-wrap:wrap;gap:8px;margin:14px 0"><button type="button" onclick="document.getElementById('adminApplicationsCard').scrollIntoView({behavior:'smooth'})">NEW APPLICATIONS</button><button type="button" onclick="document.getElementById('adminStudentsCard').scrollIntoView({behavior:'smooth'})">DELETE STUDENT</button><button type="button" onclick="document.getElementById('adminExamsCard').scrollIntoView({behavior:'smooth'})">EXAM RESULTS</button><button type="button" onclick="document.getElementById('adminCertificatesCard').scrollIntoView({behavior:'smooth'})">CERTIFICATES</button></div><button class="secondary" onclick="adminLogout()">LOG OUT</button></div>
-<div class="card" id="adminApplicationsCard"><h2>NEW APPLICATIONS</h2><p>Review student applications and choose Accept or Reject.</p><button class="secondary" onclick="loadApplications()">REFRESH APPLICATIONS</button><div id="applicationList" aria-live="polite">Press REFRESH APPLICATIONS to load submissions.</div></div>
-<div class="card" id="adminStudentsCard"><h2>STUDENT RECORDS — DELETE STUDENT</h2><p>Review enrolled students. Deleting a student permanently removes their NOVARA account and related records.</p><button class="secondary" onclick="loadAdminStudents()">REFRESH STUDENTS</button><div id="adminStudentList"></div></div>
-<div class="card" id="adminExamsCard"><h2>EXAM REQUESTS & RESULTS</h2><p>Schedule the exam after the 30-day course. Record the score after the exam; students see results 3 days later. Issue a certificate 7 days after a published Pass.</p><button class="secondary" onclick="loadExamRequests()">REFRESH EXAM REQUESTS</button><div id="examRequestList"></div></div>
-<div class="card" id="adminCertificatesCard"><h2>ISSUE CERTIFICATE</h2><p>Certificates can be issued 7 days after a Passed result is published.</p><label>Student ID</label><input id="certStudent" placeholder="NVS-2026-001"><button onclick="makeCertificate()">ISSUE CERTIFICATE</button><p id="certMessage" role="status"></p></div>
-</div></section>
+<section id="admin" class="hidden"><div class="card"><h2>SECURE ADMIN LOGIN</h2><p class="small">Sign in using the admin email and password created in Supabase Authentication. The password is never stored in this website.</p><form id="adminLoginForm" onsubmit="adminLogin(event)"><label>Admin email</label><input id="adminEmail" type="email" autocomplete="username" required><label>Password</label><input id="adminPassword" type="password" autocomplete="current-password" required><button id="adminLoginButton" type="submit">SIGN IN</button></form><button class="secondary" type="button" onclick="sendPasswordReset()">FORGOT PASSWORD?</button><p id="adminMessage" role="status"></p><div id="newPasswordBox" class="hidden"><h3>SET A NEW PASSWORD</h3><form onsubmit="saveNewPassword(event)"><label>New password</label><input id="newPassword" type="password" minlength="8" autocomplete="new-password" required><button type="submit">SAVE NEW PASSWORD</button></form><p id="newPasswordMessage" role="status"></p></div></div>
+<div id="adminPanel" class="hidden"><div class="card"><h2>ADMIN DASHBOARD</h2><div class="stat">Students<br><b id="total">0</b></div><div class="stat">Certificates<br><b id="certTotal">0</b></div><button class="secondary" onclick="adminLogout()">LOG OUT</button></div><div class="card"><h2>REGISTER STUDENT</h2><form onsubmit="addStudent(event)"><label>Full name</label><input id="newName" maxlength="100" required><label>Student ID</label><input id="newStudentId" maxlength="40" placeholder="NVS-2026-001" required><label>Course</label><select id="newCourse"></select><button type="submit">ADD STUDENT</button></form><p id="addMessage" role="status"></p></div><div class="card"><h2>NEW APPLICATIONS</h2><p class="small">Review each application and choose Accept or Reject. Only approved students can enter their course.</p><button class="secondary" onclick="loadApplications()">REFRESH APPLICATIONS</button><div id="applicationList"></div></div><div class="card"><h2>STUDENT RECORDS</h2><button class="secondary" onclick="loadDashboard()">REFRESH RECORDS</button><div id="studentList"></div></div><div class="card"><h2>EXAM REQUESTS</h2><button class="secondary" onclick="loadExamRequests()">REFRESH REQUESTS</button><div id="examRequestList"></div></div><div class="card"><h2>ISSUE CERTIFICATE</h2><label>Student ID</label><input id="certStudent" placeholder="NVS-2026-001"><button onclick="makeCertificate()">ISSUE CERTIFICATE</button><p id="certMessage" role="status"></p></div></div></section>
 <section id="verify" class="hidden"><div class="card"><h2>CERTIFICATE VERIFICATION</h2><label>Certificate ID</label><input id="verifyID" placeholder="NOVA-..."><button onclick="verifyCertificate()">VERIFY CERTIFICATE</button><div id="verifyResult" aria-live="polite"></div><p class="small">Verification displays only limited public certificate details.</p></div></section>
 <section id="about" class="hidden"><div class="card"><h2>ABOUT NOVARA</h2><p>NOVARA is an independent learning academy concept focused on introductory digital skills, technology awareness and responsible computing.</p><p><b>Founder &amp; Director:</b> FEYSAL ALI MOHAMED</p><p class="small">Do not claim accreditation unless official approval has been obtained.</p></div><div class="card"><h2>CONTACT US</h2><p>WhatsApp: +254 112 764 746</p><p>Email: fy011276@gmail.com</p><button onclick="window.open('https://wa.me/254112764746','_blank')">CONTACT ON WHATSAPP</button> <a href="mailto:fy011276@gmail.com" style="color:#f0ce7b">SEND EMAIL</a></div></section>
 <section id="certificateSection" class="hidden"><h2 class="noPrint">CERTIFICATE PREVIEW</h2><div id="certificate"></div><div class="noPrint" style="text-align:center"><button onclick="window.print()">PRINT / SAVE PDF</button></div></section>
@@ -58,138 +74,23 @@ footer{text-align:center;padding:25px;color:#899bb2}
 const SUPABASE_URL="https://pcjnxmliidpiupmzicbs.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY="sb_publishable_M0XEazuI6Sp82jQeUlHabw_1kWuq367";
 const WA="254112764746";
-const COURSES=[
- ["IT Fundamentals","Computer systems, hardware, software, operating systems and basic IT support."],
- ["Computer Applications","Documents, spreadsheets, presentations, email and digital productivity."],
- ["Cybersecurity Fundamentals","Account safety, phishing awareness, privacy, safe browsing and data protection."],
- ["Networking Fundamentals","Computer networks, LAN, WAN, Wi-Fi, IP addresses and DNS concepts."],
- ["Ethical Hacking Fundamentals","Cybersecurity ethics, written permission, security concepts and responsible reporting."]
-];
-// Introductory self-study lessons shown when an admin has not uploaded custom lessons.
-// Existing Supabase lessons always take priority over these built-in materials.
-const BUILTIN_LESSONS={
- "IT Fundamentals":[
-  ["What is a computer?","A computer is an electronic device that accepts input, processes information and produces output. Common examples include phones, laptops and desktop computers.\n\nKey terms: input, processing, output and storage.\n\nActivity: List three devices you use and describe one task each device helps you do."],
-  ["Hardware and software","Hardware is the physical part of a device, such as the screen, keyboard, processor and storage drive. Software is the set of programs that tells hardware what to do.\n\nExamples of software include an operating system, browser and word processor.\n\nActivity: Classify five items as hardware or software."],
-  ["Files, folders and storage","Files hold information. Folders organise files. Use clear names, sensible folders and backups. Common file types include PDF, DOCX, JPG and MP4.\n\nActivity: Plan folders for school work, photos and personal documents. Explain why backups matter."],
-  ["Basic troubleshooting","When a device has a problem, identify the issue, check power and connections, restart when safe, review settings and record any error message. Do not share passwords.\n\nActivity: Write a simple checklist for solving a phone that cannot connect to Wi-Fi."]
- ],
- "Computer Applications":[
-  ["Documents and word processing","A word processor helps create letters, reports and notes. Learn to use headings, paragraphs, lists, page layout and spell check. Save work with a clear filename.\n\nActivity: Create a one-page study timetable with a title and a numbered list."],
-  ["Spreadsheets basics","A spreadsheet organises information in rows and columns. A cell is where a row and column meet. Formulas begin with an equals sign.\n\nExamples: =SUM(B2:B6) adds values; =AVERAGE(B2:B6) finds their mean.\n\nActivity: Make a weekly expense table and calculate its total."],
-  ["Presentations","A good presentation has one main idea per slide, readable text, consistent formatting and useful visuals. Avoid filling slides with long paragraphs.\n\nActivity: Plan five slides introducing a skill you know."],
-  ["Email and digital etiquette","Use a clear subject, polite greeting, short message and appropriate sign-off. Check recipients and attachments before sending. Never open unexpected attachments from unknown senders.\n\nActivity: Draft a polite email asking a teacher for clarification."]
- ],
- "Cybersecurity Fundamentals":[
-  ["Protecting accounts","Use a unique, long password for each important account and enable multi-factor authentication where available. Never share one-time codes or passwords.\n\nActivity: Make a personal account-security checklist without writing down any real passwords."],
-  ["Recognising scams and phishing","Scam messages may create urgency, promise prizes or ask for private information. Check the sender and destination carefully. Contact an organisation through its official app or website instead of a message link.\n\nActivity: List four warning signs in a suspicious message."],
-  ["Privacy and personal information","Share only the information needed. Review app permissions and privacy settings. Be careful with identity documents, location details and private photos.\n\nActivity: Review the permissions of one app and decide which are necessary."],
-  ["Safe browsing and device updates","Use trusted app stores, keep software updated and avoid unknown downloads. Updates often fix security weaknesses. Back up important files.\n\nActivity: Write five habits for safer browsing."]
- ],
- "Networking Fundamentals":[
-  ["How networks work","A network connects devices so they can communicate and share resources. A home Wi-Fi network is a common example. A router helps connect a local network to the internet.\n\nActivity: Draw a simple home network with a router and three devices."],
-  ["LAN, WAN and Wi-Fi","A LAN connects devices in a limited area, such as a school. A WAN connects networks over large distances. Wi-Fi connects devices wirelessly to a local network.\n\nActivity: Give one real-world example of a LAN and a WAN."],
-  ["IP addresses and DNS","An IP address identifies a device or network interface for communication. DNS helps translate human-readable domain names into IP addresses.\n\nActivity: Explain why people use website names instead of memorising IP addresses."],
-  ["Responsible network use","Use networks only with permission. Protect Wi-Fi with a strong password and keep router software updated. Do not attempt to access other people's devices or accounts.\n\nActivity: Create a checklist for securing a home Wi-Fi network."]
- ],
- "Ethical Hacking Fundamentals":[
-  ["Ethics, permission and scope","Security testing is appropriate only when the system owner has clearly authorised it. Written permission should define the systems, dates and allowed activities. Never test public systems without permission.\n\nActivity: Write three rules for an ethical security tester."],
-  ["Security concepts","Confidentiality means information is seen only by authorised people. Integrity means information remains accurate. Availability means systems can be used when needed.\n\nActivity: Give one everyday example of each principle."],
-  ["Common security weaknesses","Weak passwords, outdated software and excessive account permissions can increase risk. Learn to recognise and report issues without trying to exploit them.\n\nActivity: Suggest safe improvements for a fictional small office."],
-  ["Writing a responsible report","A useful report explains the issue, its potential impact, evidence gathered within the approved scope and a practical recommendation. Do not include other people's private data.\n\nActivity: Draft a short report about an outdated application, including a safe recommendation."]
- ],
- "Web Development":[
-  ["How websites work","A website is made of files delivered to a browser. HTML describes page structure, CSS controls appearance and JavaScript adds interaction. A browser reads these files and displays the page.\n\nActivity: Identify the HTML, CSS and JavaScript roles on a website you use."],
-  ["HTML page structure","HTML uses elements such as headings, paragraphs, links, images and lists. A page normally includes a doctype, html, head and body. Use meaningful headings in order.\n\nActivity: Plan a simple About Me page using one heading, two paragraphs and a list."],
-  ["CSS and responsive design","CSS controls colours, spacing, typography and layout. Responsive design helps a page work on phones and larger screens. Use flexible widths and test different screen sizes.\n\nActivity: Sketch a mobile-friendly course information card."],
-  ["JavaScript and testing","JavaScript can respond to clicks, validate forms and update page content. Test your work, check error messages and never place secret API keys in public website code.\n\nActivity: Describe what should happen when a visitor presses a Submit button."]
- ],
- "Digital Marketing":[
-  ["Audience and goals","Marketing begins by understanding who a service helps and what problem it solves. Set a clear goal, such as informing people or helping them find a course.\n\nActivity: Describe the audience and goal for a fictional online course."],
-  ["Content planning","Useful content answers real questions. Plan a mix of short explanations, demonstrations and updates. Use accurate titles and obtain permission before using other people's photos or work.\n\nActivity: Create a one-week content calendar for a learning page."],
-  ["Social media communication","Write clearly, be respectful and respond helpfully. Do not buy followers, mislead audiences or promise guaranteed results. Check facts before publishing.\n\nActivity: Draft an honest post introducing a free digital-skills lesson."],
-  ["Measuring results","Reach shows how many people saw content. Engagement includes meaningful interactions. Clicks show visits to a link. Use results to improve content rather than focusing on one number.\n\nActivity: Choose three useful measures for a course announcement."]
- ],
- "Artificial Intelligence Literacy":[
-  ["What AI can and cannot do","AI systems find patterns and generate outputs such as text, images or summaries. They can make mistakes and may present incorrect information confidently. Human checking remains important.\n\nActivity: Name two tasks where AI may help and one where expert review is essential."],
-  ["Writing clear prompts","A useful prompt gives context, the task, the audience and the desired format. Add relevant constraints and ask for uncertainty to be stated. Do not include private information.\n\nActivity: Improve this prompt: 'Explain computers' by adding audience and format."],
-  ["Checking AI answers","Check important claims against reliable sources, compare dates and verify calculations. AI output is a starting point, not proof. Do not submit generated work as your own when rules prohibit it.\n\nActivity: Make a three-step fact-checking checklist."],
-  ["Responsible AI use","Respect privacy, copyright and school or workplace rules. Avoid using AI to impersonate people, spread misinformation or make unfair decisions. Disclose AI assistance when required.\n\nActivity: Write five principles for responsible AI use."]
- ],
- "English Communication":[
-  ["Building clear sentences","A sentence usually expresses a complete idea. A basic sentence often has a subject and a verb. Use capital letters at the beginning and punctuation at the end.\n\nActivity: Write five sentences describing your daily study routine."],
-  ["Grammar: tenses","Present tense describes routines or facts. Past tense describes completed actions. Future forms describe plans or events that have not happened yet. Keep tense consistent when the time does not change.\n\nActivity: Write one sentence about yesterday, today and tomorrow."],
-  ["Reading for meaning","Preview the title, identify the main idea and notice supporting details. Use context to understand unfamiliar words, then check a dictionary. Summarise a passage in your own words.\n\nActivity: Read a short news article and write its main idea in two sentences."],
-  ["Writing and speaking practice","Organise writing with an introduction, clear points and a conclusion. When speaking, use a steady pace and organise ideas before you begin.\n\nActivity: Prepare a one-minute introduction to a subject you enjoy learning."]
- ],
- "Business Management":[
-  ["Understanding a business","A business provides goods or services to meet customer needs. It must understand its customers, costs, quality and competition.\n\nActivity: Describe a small business idea and the need it would meet."],
-  ["Planning and goals","A simple business plan describes the product, customers, resources, costs and goals. Make goals specific and realistic, then review progress.\n\nActivity: Write three goals for a small school-supplies business."],
-  ["Customer service","Good customer service involves listening, clear communication, honesty and fair problem-solving. Protect customer information and do not make promises you cannot keep.\n\nActivity: Write a polite response to a customer whose order is delayed."],
-  ["Basic financial records","Record money received and money spent. Keep receipts and separate business records from personal spending. Revenue is money earned; profit is what remains after costs.\n\nActivity: Calculate profit if sales are 2,000 and costs are 1,350 (same currency units)."]
- ],
- "Graphic Design":[
-  ["Design principles","A clear design uses hierarchy, alignment, contrast, repetition and spacing. Make the most important information easiest to notice.\n\nActivity: Find a poster and identify its headline, supporting text and call to action."],
-  ["Colour and typography","Choose colours with readable contrast. Use a small number of complementary colours and no more than a few font styles. Keep body text easy to read.\n\nActivity: Plan a two-colour palette and two font roles for a course poster."],
-  ["Layout and visual balance","Group related information, align elements and leave enough empty space. Check that a design remains readable on a phone screen.\n\nActivity: Sketch a simple social media announcement with a headline and date."],
-  ["Exporting and image rights","Choose an image size suitable for its destination. Export in a suitable format such as PNG or JPG. Use your own work or assets you have permission to use.\n\nActivity: Make a checklist for reviewing a poster before publishing it."]
- ],
- "Data Skills with Spreadsheets":[
-  ["Organising data","Use one clear heading per column, one record per row and consistent formats. Avoid merged cells in data tables.\n\nActivity: Design a table for tracking books borrowed from a small library."],
-  ["Formulas and functions","Formulas calculate values. SUM adds a range, AVERAGE finds a mean and COUNT counts numeric cells. Check cell references before relying on a result.\n\nActivity: Write a formula to add values in cells C2 through C8."],
-  ["Sorting and filtering","Sorting changes the order of records. Filtering displays only records that meet selected conditions. Keep the header row clear and preserve the original data.\n\nActivity: Explain how you would display only students enrolled in one course."],
-  ["Charts and interpretation","Charts help communicate patterns. Choose a chart that matches the data and label axes clearly. A chart should not exaggerate differences.\n\nActivity: Choose a chart for comparing monthly attendance and explain why."]
- ],
- "Mobile Productivity":[
-  ["Organising your phone","Use folders and clear filenames to organise documents. Keep important files backed up and review storage regularly. Lock your phone with a secure screen lock.\n\nActivity: Plan folders for learning, work and personal documents."],
-  ["Documents and PDFs on mobile","A phone can create and read documents, scan pages and export files as PDFs. Check page order and readability before sharing.\n\nActivity: Create a one-page note and save a PDF copy."],
-  ["Email and online collaboration","Use clear email subjects, respectful messages and correct file permissions. Before sharing a document, check who can view or edit it.\n\nActivity: Describe the difference between viewer and editor access."],
-  ["Mobile privacy and safety","Install apps from trusted stores, review permissions, update your phone and avoid unknown links. Never share verification codes with another person.\n\nActivity: Make a five-point mobile safety checklist."]
- ]
-};
-
-// Complete 30-day syllabus: exactly one lesson per day for each of the five courses.
-const DAILY_SYLLABUS={
-"IT Fundamentals":["Introduction to information technology","Types of computers and smart devices","Main parts of a computer","CPU and how processing works","Memory: RAM and ROM","Storage devices and file sizes","Input and output devices","Operating systems explained","Using desktop and mobile interfaces","Files, folders and file extensions","Installing and updating applications safely","Basic computer maintenance","Understanding internet connections","Web browsers and search skills","Email and professional communication","Cloud storage and backups","Printers and common peripherals","Basic troubleshooting method","Understanding error messages","Keeping devices secure","Passwords and multi-factor authentication","Digital privacy and personal data","Accessibility and assistive technology","Basic computer networking","Introduction to databases","Working with digital information","Technology in education and business","Responsible and ethical technology use","Practical IT support scenario","Revision and final knowledge check"],
-"Computer Applications":["Introduction to productivity applications","Creating and saving documents","Text formatting and page layout","Using headings and styles","Tables, lists and page numbers","Proofreading and document review","Creating spreadsheets","Rows, columns and cell references","Entering and formatting data","Basic spreadsheet formulas","SUM, AVERAGE, MIN and MAX","Sorting and filtering information","Creating clear charts","Spreadsheet accuracy and checking","Planning a presentation","Slide layouts and themes","Readable presentation design","Adding images and diagrams responsibly","Presenting information clearly","Email basics and etiquette","Attachments and cloud file sharing","Managing calendars and tasks","PDF creation and document export","Collaborating on shared files","File naming and organisation","Mobile productivity tools","Protecting documents and accounts","Choosing the right application","Practical office productivity project","Revision and final knowledge check"],
-"Cybersecurity Fundamentals":["Introduction to cybersecurity","Confidentiality, integrity and availability","Personal information and digital footprints","Creating strong unique passwords","Multi-factor authentication","Recognising phishing messages","Common online scams","Safe links and website checks","Email and attachment safety","Device updates and security patches","Safe application downloads","Mobile device security","Wi-Fi and public network safety","Privacy settings and app permissions","Social engineering awareness","Account recovery and protection","Backups and data recovery concepts","Malware awareness and prevention","Secure browsing habits","Protecting files and documents","Home network security basics","Physical security of devices","Responsible incident reporting","Security policies and acceptable use","Online identity and reputation","Safe use of cloud services","Cybersecurity at school and work","Building a personal security checklist","Scenario-based security review","Revision and final knowledge check"],
-"Networking Fundamentals":["Introduction to computer networks","Why devices communicate","Network types: PAN, LAN and WAN","Network topologies overview","Wired and wireless connections","Ethernet and network cables","Switches and their purpose","Routers and network gateways","Wireless access points","Wi-Fi standards and safe setup","IP addresses explained","Private and public IP addresses","IPv4 and IPv6 overview","Subnet concepts for beginners","MAC addresses explained","DNS and domain names","DHCP and automatic addressing","How data travels in packets","Basic network protocols","HTTP and HTTPS overview","Network performance and bandwidth","Latency and packet loss concepts","Firewalls and network protection","Secure home Wi-Fi configuration","Network troubleshooting process","Reading simple connection status","Cloud networks and remote access","Network diagrams and documentation","Practical small-office network plan","Revision and final knowledge check"],
-"Ethical Hacking Fundamentals":["Introduction to ethical cybersecurity","Ethics and written permission","Defining scope and rules of engagement","Confidentiality and responsible conduct","Cybersecurity roles and careers","The security testing lifecycle overview","Understanding assets and risks","Threats, vulnerabilities and impact","Security policies and controls","Authentication and account safety","Access control principles","Secure configuration concepts","Software updates and patch management","Web security concepts for beginners","Network security concepts","Encryption and data protection basics","Logging and security monitoring","Backup and recovery planning","Security awareness and phishing prevention","Risk assessment fundamentals","Safe vulnerability disclosure","Writing clear security findings","Evidence handling and privacy","Remediation recommendations","Retesting and verification concepts","Legal boundaries and acceptable use","Building a home lab safely (concepts only)","Professional communication and reporting","Ethical security assessment case study","Revision and final knowledge check"]
-};
-function buildDailyLessons(course){
- const topics=DAILY_SYLLABUS[course]||[];
- return topics.map((title,i)=>({week_number:Math.floor(i/7)+1,lesson_order:i+1,lesson_title:title,lesson_content:`DAY ${i+1} — ${title}\n\nLearning objective: Understand the key ideas behind ${title.toLowerCase()} as part of ${course}.\n\nStudy notes: Read the topic carefully. Identify its purpose, the main terms, where it is used, and the benefits and limitations. Connect the topic to a practical, everyday example. Follow safe, legal and responsible practices throughout your learning.\n\nPractice activity: Write a short explanation of this topic in your own words. Give two examples, list three important points, and describe one good practice you would follow.\n\nReview: Summarise what you learned today in 3–5 sentences before moving to the next day.`}));
-}
-
+const COURSES=[["IT Fundamentals","Computer systems, hardware, software and IT support."],["Computer Applications","Office applications and digital productivity."],["Cybersecurity Fundamentals","Digital safety, passwords, phishing and data protection."],["Networking Fundamentals","LAN, WAN, IP addresses and network concepts."],["Ethical Hacking Fundamentals","Legal security testing, permission and responsible reporting."]];
 const $=id=>document.getElementById(id);
 const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
 let adminSession=false;
-let studentUserId=null; // Current authenticated student UUID, used by portal actions.
+let studentUserId=null;
 function esc(v){return String(v??"").replace(/[&<>"']/g,x=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[x]))}
-function show(id){
- if(id==="admin"){
-  // Admin is available only through the private route and always starts at the login screen.
-  if(!adminSession){$("adminPanel").classList.add("hidden");$("adminLoginForm").classList.remove("hidden");}
-  if(location.hash!=="#admin")history.replaceState(null,"",location.pathname+location.search+"#admin");
- }else if(location.hash==="#admin"){
-  history.replaceState(null,"",location.pathname+location.search);
- }
- document.querySelectorAll("main>section").forEach(s=>s.classList.add("hidden"));
- $(id).classList.remove("hidden");window.scrollTo(0,0);
-}
+function show(id){document.querySelectorAll("main>section").forEach(s=>s.classList.add("hidden"));$(id).classList.remove("hidden");if(id==="admin"&&!adminSession){$("adminPanel").classList.add("hidden")}window.scrollTo(0,0)}
 function fillSelects(){["appCourse","newCourse"].forEach(id=>$(id).innerHTML=COURSES.map(c=>`<option value="${esc(c[0])}">${esc(c[0])}</option>`).join(""))}
-function renderCourses(){$("courseList").innerHTML=COURSES.map(c=>`<div class="tile"><h3>${esc(c[0])}</h3><p>${esc(c[1])}</p><p class="small">Beginner level • 4 introductory lessons</p><button onclick="show('apply');$('appCourse').value='${esc(c[0])}'">ENROL IN COURSE</button></div>`).join("")}
+function renderCourses(){$("courseList").innerHTML=COURSES.map(c=>`<div class="tile"><h3>${esc(c[0])}</h3><p>${esc(c[1])}</p></div>`).join("")}
 async function applyStudent(e){
  e.preventDefault();const btn=$("applyButton"),msg=$("applyMessage");btn.disabled=true;msg.textContent="Creating your student account…";
- const full_name=$("appName").value.trim(),email=$("appEmail").value.trim().toLowerCase(),phone=$("appPhone").value.trim(),course=$("appCourse").value,password=$("appPassword").value;
- if(!COURSES.some(c=>c[0]===course)){msg.textContent="Please select one of the five NOVARA courses.";btn.disabled=false;return;}
+ const full_name=$("appName").value.trim(),email=$("appEmail").value.trim(),phone=$("appPhone").value.trim(),course=$("appCourse").value,password=$("appPassword").value;
  try{
-  const {error:applicationError}=await db.from("novara_applications").insert({full_name,gmail:email,phone_number:phone,course,status:"Pending"});
-  if(applicationError)throw new Error("Application could not be saved: "+applicationError.message);
   const {data,error}=await db.auth.signUp({email,password,options:{data:{full_name,course,phone},emailRedirectTo:"https://novara-search.netlify.app"}});
   if(error)throw error;
-  if(data.session&&data.user){show("student");await loadStudentDashboard(data.user);}
-  else{msg.textContent="Your account has been created. If email confirmation is enabled, confirm it first. After NOVARA admin accepts your application, sign in through STUDENT PORTAL and your selected course will open automatically.";}
+  if(data.session&&data.user){await ensureStudentProfile(data.user);$("loginEmail").value=email;show("student");await loadStudentDashboard(data.user);msg.textContent="Application submitted. Your Student ID is created. Wait for NOVARA admin approval before lessons unlock.";}
+  else{msg.textContent="Account created. Confirm the email link, then sign in to STUDENT PORTAL. Your pending student profile and ID will be created when you first sign in. Admin approval is required before lessons unlock.";}
  }catch(err){msg.textContent=err.message||"Could not create your student account. Please check your details and try again."}
  finally{btn.disabled=false}
 }
@@ -206,72 +107,88 @@ async function studentSignUp(e){
  finally{btn.disabled=false}
 }
 async function ensureStudentProfile(user){
- // Match the approved application by email without case sensitivity.
- const email=String(user.email||"").trim().toLowerCase();
- if(!email)throw new Error("Your signed-in account has no email address. Sign in with the Gmail used on your NOVARA application.");
- const {data:apps,error:appError}=await db.from("novara_applications")
-  .select("full_name,gmail,phone_number,course,status,created_at")
-  .ilike("gmail",email).order("created_at",{ascending:false}).limit(1);
- if(appError)throw new Error("Could not check your NOVARA application: "+appError.message+". Check the novara_applications SELECT policy in Supabase.");
- const app=apps&&apps[0];
- if(!app)throw new Error("No NOVARA application was found for "+email+". Sign in using the same Gmail you used when applying.");
- const approval=String(app.status||"").trim().toLowerCase();
- if(approval!=="accepted"){
-  if(approval==="rejected")throw new Error("Your NOVARA application was rejected. Please contact the administration.");
-  throw new Error("Your application is still pending. The NOVARA admin must ACCEPT it before course access is enabled.");
- }
- if(!app.course)throw new Error("Your accepted application has no selected course. Please contact NOVARA administration.");
- const {data:existing,error:readError}=await db.from("novara_students")
-  .select("user_id,course,course_started_at,student_id")
-  .eq("user_id",user.id).maybeSingle();
- if(readError)throw new Error("Could not read your student profile: "+readError.message+". Check novara_students SELECT permissions.");
- if(existing){
-  // Keep the original course start date, but synchronize the approved course.
-  if(existing.course!==app.course){
-   throw new Error("Your approved course does not match your student profile. Please contact NOVARA administration.");
-  }
-  return;
- }
+ const meta=user.user_metadata||{},full_name=String(meta.full_name||"NOVARA Student"),course=String(meta.course||COURSES[0][0]),phone=String(meta.phone||"");
+ const {data:existing,error:readError}=await db.from("novara_students").select("user_id").eq("user_id",user.id).maybeSingle();
+ if(readError)throw readError;
+ if(existing)return;
  const student_id="NVS-"+new Date().getFullYear()+"-"+user.id.replace(/-/g,"").slice(0,8).toUpperCase();
- const row={user_id:user.id,full_name:app.full_name||user.user_metadata?.full_name||"NOVARA Student",email:user.email,student_id,course:app.course,phone:app.phone_number||"",status:"Registered",course_started_at:new Date().toISOString()};
- const {error:insertError}=await db.from("novara_students").insert(row);
- if(insertError)throw new Error("Your application is ACCEPTED, but Supabase could not create your student profile: "+insertError.message+". Check the novara_students INSERT policy in Supabase.");
+ const row={user_id:user.id,full_name,email:user.email,student_id,course,phone,status:"Pending",course_started_at:null};
+ const {error}=await db.from("novara_students").insert(row);if(error)throw error;
 }
-
 async function studentLogin(e){
  e.preventDefault();const msg=$("studentAuthMessage"),btn=$("studentLoginButton");btn.disabled=true;msg.textContent="Signing in…";
- try{const {data,error}=await db.auth.signInWithPassword({email:$("loginEmail").value.trim().toLowerCase(),password:$("loginPassword").value});if(error)throw error;await loadStudentDashboard(data.user);}
+ try{const {data,error}=await db.auth.signInWithPassword({email:$("loginEmail").value.trim(),password:$("loginPassword").value});if(error)throw error;await ensureStudentProfile(data.user);await loadStudentDashboard(data.user);}
  catch(err){msg.textContent=err.message||"Student login failed."}
  finally{btn.disabled=false}
 }
 async function loadStudentDashboard(user){
- studentUserId=user.id;const msg=$("studentAuthMessage");msg.textContent="Checking approval and loading your course…";
+ studentUserId=user.id;const msg=$("studentAuthMessage");msg.textContent="Loading your course…";
  try{
   await ensureStudentProfile(user);
   const {data:student,error}=await db.from("novara_students").select("full_name,email,student_id,course,status,course_started_at").eq("user_id",user.id).maybeSingle();
-  if(error)throw error;if(!student)throw new Error("Your student profile is not available. Please sign in again or contact NOVARA.");
+  if(error)throw error;if(!student)throw new Error("Your student profile is not available yet. Confirm your email, then sign in again. If the problem continues, contact NOVARA.");
+  if(student.status!=="Accepted"){
+   $("studentDashboard").classList.add("hidden");$("studentAuthBox").classList.remove("hidden");
+   $("studentAuthMessage").textContent=student.status==="Rejected"?"Your application was not accepted. Please contact NOVARA for more information.":"Your application is waiting for admin review. You will be able to enter your course after it is accepted.";
+   return;
+  }
   $("studentAuthBox").classList.add("hidden");$("studentDashboard").classList.remove("hidden");
   $("studentWelcome").textContent="Welcome, "+student.full_name+" • "+(student.email||user.email);
   $("studentCourseInfo").innerHTML="<b>Student ID:</b> "+esc(student.student_id)+"<br><b>Course:</b> "+esc(student.course)+"<br><b>Status:</b> "+esc(student.status)+"<br><b>Started:</b> "+esc(student.course_started_at?new Date(student.course_started_at).toLocaleString():"Not recorded");
-  await loadStudentLessons(student);await updateCourseTimer(student);await refreshStudentRequestStatus();await loadStudentExamResult(user.id);await loadStudentCertificate(user.id);msg.textContent="";
- }catch(err){$("studentAuthBox").classList.remove("hidden");$("studentDashboard").classList.add("hidden");msg.textContent=err.message||"Could not load student profile."}
+  await loadStudentLessons(student);await updateCourseTimer(student);await refreshStudentRequestStatus();msg.textContent="";
+ }catch(err){msg.textContent=err.message||"Could not load student profile."}
 }
+const STARTER_LESSONS={
+ "Ethical Hacking Fundamentals":[
+  ["1","Ethical Hacking and Permission","Ethical hacking means checking computer systems for security weaknesses only with clear written permission. Learn the difference between authorized testing and unauthorized access. Core principles: scope, permission, privacy, documentation and responsible reporting."],
+  ["2","Networking and the Web","Learn what IP addresses, routers, DNS, HTTP and HTTPS do. Understand how information travels between a browser and a website. Practice identifying these terms using safe diagrams and examples."],
+  ["3","Common Security Risks","Study broad categories such as weak passwords, phishing, outdated software and unsafe settings. Learn prevention: unique passwords, multi-factor authentication, updates, backups and careful link checking."],
+  ["4","Responsible Security Reports","A good report explains the system owner’s authorized scope, the issue in plain language, its possible impact and a safe recommendation. Never test a system that you do not own or have permission to assess."]
+ ],
+ "IT Fundamentals":[
+  ["1","Computer Basics","Understand hardware, software, operating systems, files and peripherals. Identify how a computer receives input, processes information, stores data and produces output."],
+  ["2","Operating Systems and Files","Learn how operating systems manage applications, folders, permissions and updates. Practice organizing files and using safe backup habits."],
+  ["3","Internet and Digital Safety","Learn browsers, websites, email, cloud storage and basic online safety. Use strong unique passwords and verify links before opening them."],
+  ["4","Troubleshooting","Use a clear process: identify the issue, check simple causes, test one change at a time, record the result and ask for help when needed."]
+ ],
+ "Computer Applications":[
+  ["1","Word Processing","Create and format documents with headings, paragraphs, lists and page layouts. Save files with clear names and export to PDF when needed."],
+  ["2","Spreadsheets","Learn cells, rows, columns, basic formulas and sorting. Use SUM and AVERAGE to summarize sample information."],
+  ["3","Presentations","Build clear slides with a title, key points and relevant visuals. Keep layouts consistent and make text readable."],
+  ["4","Digital Productivity","Organize files, use calendars and collaborate respectfully. Protect personal information when sharing documents."]
+ ],
+ "Cybersecurity Fundamentals":[
+  ["1","Security Principles","Learn confidentiality, integrity and availability. Understand why people, processes and technology all matter in protecting information."],
+  ["2","Passwords and Accounts","Use unique passwords, a password manager where appropriate and multi-factor authentication. Never share verification codes."],
+  ["3","Phishing and Social Engineering","Recognize suspicious messages, unexpected attachments, urgent demands and lookalike websites. Verify requests through a trusted channel."],
+  ["4","Safe Devices and Backups","Keep software updated, use device locks, install apps from trusted sources and maintain backups of important files."]
+ ],
+ "Networking Fundamentals":[
+  ["1","Network Basics","Learn what a network is and how devices communicate. Compare LAN, WAN and wireless networks."],
+  ["2","IP and DNS","Understand the purpose of IP addresses, routers and DNS. Use simple diagrams to follow a request from a device to a website."],
+  ["3","Network Equipment","Study the roles of switches, routers, access points and modems. Learn how they connect devices."],
+  ["4","Network Safety","Use secure Wi-Fi settings, strong router passwords, software updates and guest networks when appropriate."]
+ ]
+};
 async function loadStudentLessons(student){
- const box=$("lessonList");box.textContent="Loading your 30 daily lessons…";
+ const box=$("lessonList");box.textContent="Loading lessons…";
  try{
-  const {data,error}=await db.from("novara_course_lessons").select("week_number,lesson_title,lesson_content,lesson_order").eq("course",student.course).order("lesson_order");
+  const {data,error}=await db.from("novara_course_lessons").select("week_number,lesson_title,lesson_content,lesson_order").eq("course",student.course).order("week_number").order("lesson_order");
   if(error)throw error;
-  // Use the database syllabus only when it contains all 30 lessons; otherwise use the complete built-in syllabus.
-  const lessons=(data&&data.length>=30)?data.slice(0,30):buildDailyLessons(student.course);
-  if(lessons.length!==30)throw new Error("The 30-day syllabus for this course is not configured.");
-  const started=student.course_started_at?new Date(student.course_started_at):new Date();
-  const elapsed=Math.max(0,Math.floor((Date.now()-started.getTime())/86400000));
-  const unlocked=Math.min(30,elapsed+1);
-  box.innerHTML=`<p class="notice">DAY ${unlocked} OF 30 • One lesson unlocks every 24 hours. Complete the 30-day learning period before requesting the exam.</p>`+lessons.map((l,i)=>{
-    const day=i+1,open=day<=unlocked;
-    return `<div class="student"><h3>${open?"📘":"🔒"} Day ${day}: ${open?esc(l.lesson_title):"Lesson locked"}</h3>${open?`<p style="white-space:pre-wrap">${esc(l.lesson_content)}</p>`:`<p>This lesson unlocks in ${day-elapsed-1} day(s).</p>`}</div>`;
-  }).join("");
- }catch(err){box.textContent="Could not load lessons: "+(err.message||"Please try again.")}
+  if(data&&data.length){
+   box.innerHTML=data.map(l=>`<div class="student"><h3>Week ${esc(l.week_number)}: ${esc(l.lesson_title)}</h3><p style="white-space:pre-wrap">${esc(l.lesson_content)}</p></div>`).join("");
+   return;
+  }
+  renderStarterLessons(box,student.course);
+ }catch(err){
+  renderStarterLessons(box,student.course);
+  const note=document.createElement("p");note.className="small";note.textContent="Showing NOVARA starter lessons. Published course materials could not be reached.";box.prepend(note);
+ }
+}
+function renderStarterLessons(box,course){
+ const lessons=STARTER_LESSONS[course]||[];
+ if(!lessons.length){box.textContent="Course lessons are being prepared. Please contact NOVARA.";return}
+ box.innerHTML=lessons.map(l=>`<div class="student"><h3>Week ${esc(l[0])}: ${esc(l[1])}</h3><p style="white-space:pre-wrap">${esc(l[2])}</p></div>`).join("");
 }
 async function updateCourseTimer(student){
  const button=$("requestExamButton"),out=$("courseTimer"),start=student.course_started_at?new Date(student.course_started_at).getTime():NaN;
@@ -290,101 +207,19 @@ async function refreshStudentRequestStatus(){
  const {data,error}=await db.from("novara_exam_requests").select("status").eq("user_id",userData.user.id).maybeSingle();
  if(!error&&data){$("examRequestMessage").textContent="Exam request status: "+data.status+".";$("requestExamButton").disabled=true;}
 }
-async function loadStudentExamResult(userId){
- const box=$("studentExamResult");box.textContent="Checking your exam result…";
- try{
-  const {data,error}=await db.from("novara_exam_results").select("course,score,result,remarks,published_at").eq("user_id",userId).lte("published_at",new Date().toISOString()).order("published_at",{ascending:false}).limit(1);
-  if(error)throw error;
-  const r=data&&data[0];
-  if(!r){box.textContent="Your result will be published 3 days after your scheduled exam.";return;}
-  box.innerHTML=`<b>Course:</b> ${esc(r.course)}<br><b>Score:</b> ${esc(r.score)}%<br><b>Result:</b> ${esc(r.result)}<br><b>Feedback:</b> ${esc(r.remarks||"No feedback provided.")}<br><span class="small">Published: ${esc(r.published_at?new Date(r.published_at).toLocaleString():"")}</span>`;
- }catch(err){box.textContent="Could not load exam result: "+(err.message||"Please try again.");}
-}
-async function loadStudentCertificate(userId){
- const box=$("studentCertificate");box.textContent="Checking certificate status…";
- try{
-  const {data,error}=await db.from("novara_certificates").select("certificate_id,course,issued_at,status").eq("user_id",userId).order("issued_at",{ascending:false}).limit(1);
-  if(error)throw error;const c=data&&data[0];
-  box.innerHTML=c?`<b>Status:</b> ${esc(c.status)}<br><b>Course:</b> ${esc(c.course)}<br><b>Certificate ID:</b> ${esc(c.certificate_id)}<br><b>Issued:</b> ${esc(new Date(c.issued_at).toLocaleString())}`:"Your certificate will appear here after you pass the exam and the 7-day waiting period is complete.";
- }catch(err){box.textContent="Could not load certificate: "+(err.message||"Please try again.");}
-}
-
 async function studentLogout(){
  await db.auth.signOut();studentUserId=null;$("studentDashboard").classList.add("hidden");$("studentAuthBox").classList.remove("hidden");$("studentAuthMessage").textContent="You have signed out.";
 }
-async function loadApplications(){
- const box=$("applicationList");box.textContent="Loading applications…";
- try{
-  await requireAdmin();
-  const {data,error}=await db.from("novara_applications").select("id,full_name,gmail,phone_number,course,student_id,status,created_at").order("created_at",{ascending:false});
-  if(error)throw error;
-  box.innerHTML=(data||[]).map(a=>`<div class="student"><h3>${esc(a.full_name)}</h3><p><b>Gmail:</b> ${esc(a.gmail)}</p><p><b>Phone:</b> ${esc(a.phone_number||"Not provided")}</p><p><b>Course:</b> ${esc(a.course)}</p><p><b>Status:</b> ${esc(a.status||"Pending")}</p><p class="small">Submitted: ${esc(a.created_at?new Date(a.created_at).toLocaleString():"Unknown")}</p>${String(a.status||"Pending").toLowerCase()==="pending"?`<button onclick="setApplicationStatus('${encodeURIComponent(String(a.gmail||""))}','Accepted')">ACCEPT</button><button class="danger" onclick="setApplicationStatus('${encodeURIComponent(String(a.gmail||""))}','Rejected')">REJECT</button>`:""}</div>`).join("")||"No new applications yet.";
- }catch(err){box.textContent=(err.message||"Could not load applications.")+". Check the NOVARA applications table permissions."}
-}
-async function setApplicationStatus(encodedGmail,status){
- try{
-  await requireAdmin();
-  if(!["Accepted","Rejected"].includes(status))throw new Error("Invalid application status.");
-  const gmail=decodeURIComponent(String(encodedGmail||"")).trim().toLowerCase();
-  if(!gmail || gmail==="null")throw new Error("This application has no valid Gmail address. Refresh applications and check the record.");
-  // Use the applicant Gmail rather than the database id: older application rows may have a NULL id.
-  const {data,error}=await db.from("novara_applications").update({status,reviewed_at:new Date().toISOString()}).ilike("gmail",gmail).eq("status","Pending").select("full_name,gmail,status");
-  if(error)throw error;
-  if(!data||data.length===0)throw new Error("No pending application matched this Gmail. Refresh the list and check its current status.");
-  await loadApplications();
-  alert(data[0].full_name+" — application "+status.toLowerCase()+" successfully.");
- }catch(err){alert("ACCEPT / REJECT failed: "+(err.message||"Unknown error"));}
-}
 async function loadExamRequests(){
  const box=$("examRequestList");box.textContent="Loading requests…";
- try{
-  await requireAdmin();
-  const {data,error}=await db.from("novara_exam_requests").select("id,student_id,user_id,course,status,requested_at,exam_date").order("requested_at",{ascending:false});
-  if(error)throw error;
-  box.innerHTML=(data||[]).map(r=>{
-   const examLocal=r.exam_date?new Date(new Date(r.exam_date).getTime()-new Date(r.exam_date).getTimezoneOffset()*60000).toISOString().slice(0,16):"";
-   return `<div class="student"><b>${esc(r.course)}</b><br>Student ID: ${esc(r.student_id)}<br>Status: ${esc(r.status)}<br>Requested: ${esc(r.requested_at?new Date(r.requested_at).toLocaleString():"")}<br>${String(r.status).toLowerCase()==="pending"?`<label>Schedule exam date and time</label><input type="datetime-local" id="examdate-${esc(r.id)}" value="${examLocal}"><button onclick="approveExamRequest('${esc(r.id)}')">ACCEPT & SCHEDULE EXAM</button>`:""}${String(r.status).toLowerCase()==="approved"&&!r.exam_date?`<label>Schedule exam date and time</label><input type="datetime-local" id="examdate-${esc(r.id)}" value=""><button onclick="approveExamRequest('${esc(r.id)}')">SAVE EXAM DATE</button>`:String(r.status).toLowerCase()==="approved"?`<p><b>Exam date:</b> ${esc(new Date(r.exam_date).toLocaleString())}</p><hr><b>Record exam score after the exam</b><label>Score (0–100)</label><input type="number" id="score-${esc(r.id)}" min="0" max="100" step="1" placeholder="Enter score"><label>Feedback</label><input id="remarks-${esc(r.id)}" maxlength="500" placeholder="Optional feedback"><button onclick="saveExamResult('${esc(r.id)}')">SAVE RESULT (PUBLISH 3 DAYS LATER)</button>`:""}</div>`;
-  }).join("")||"No exam requests yet.";
+ try{await requireAdmin();const {data,error}=await db.from("novara_exam_requests").select("id,student_id,user_id,course,status,requested_at").order("requested_at",{ascending:false});if(error)throw error;
+  box.innerHTML=(data||[]).map(r=>`<div class="student"><b>${esc(r.course)}</b><br>Student ID: ${esc(r.student_id)}<br>Status: ${esc(r.status)}<br>Requested: ${esc(new Date(r.requested_at).toLocaleString())}<br>${r.status==="pending"?`<button onclick="approveExamRequest('${esc(r.id)}')">APPROVE REQUEST</button>`:""}</div>`).join("")||"No exam requests yet.";
  }catch(err){box.textContent=err.message||"Could not load exam requests."}
 }
 async function approveExamRequest(id){
- try{
-  await requireAdmin();const raw=$("examdate-"+id).value;if(!raw)throw new Error("Choose the exam date and time first.");
-  const examDate=new Date(raw);if(Number.isNaN(examDate.getTime())||examDate.getTime()<Date.now())throw new Error("Choose a future exam date and time.");
-  const {error}=await db.from("novara_exam_requests").update({status:"approved",exam_date:examDate.toISOString()}).eq("id",id);if(error)throw error;
-  await loadExamRequests();alert("Exam scheduled. The student result will become visible 3 days after the exam date.");
- }catch(err){alert(err.message||"Could not schedule exam.")}
+ try{await requireAdmin();const {error}=await db.from("novara_exam_requests").update({status:"approved"}).eq("id",id);if(error)throw error;await loadExamRequests();alert("Request approved. Email delivery is not configured yet; the exam has not been emailed.");}
+ catch(err){alert(err.message||"Could not approve request.")}
 }
-async function saveExamResult(requestId){
- try{
-  await requireAdmin();
-  const scoreValue=Number($("score-"+requestId).value),remarks=$("remarks-"+requestId).value.trim();
-  if(!Number.isInteger(scoreValue)||scoreValue<0||scoreValue>100)throw new Error("Enter a whole-number score from 0 to 100.");
-  const {data:req,error:reqError}=await db.from("novara_exam_requests").select("user_id,student_id,course,status,exam_date").eq("id",requestId).single();
-  if(reqError)throw reqError;if(String(req.status).toLowerCase()!=="approved")throw new Error("Accept and schedule the exam first.");
-  if(!req.exam_date)throw new Error("The exam date has not been scheduled.");
-  const examDate=new Date(req.exam_date);if(Date.now()<examDate.getTime())throw new Error("You can record the result after the scheduled exam date.");
-  const result=scoreValue>=50?"Passed":"Failed",publishedAt=new Date(examDate.getTime()+3*86400000).toISOString();
-  const row={exam_request_id:requestId,user_id:req.user_id,student_id:req.student_id,course:req.course,score:scoreValue,result,remarks,published_at:publishedAt};
-  const {error}=await db.from("novara_exam_results").upsert(row,{onConflict:"exam_request_id"});if(error)throw error;
-  if(result==="Passed"){
-   const {error:studentError}=await db.from("novara_students").update({status:"Exam Passed"}).eq("user_id",req.user_id);if(studentError)throw studentError;
-  }
-  await loadExamRequests();alert("Result saved. It will appear in the student's portal 3 days after the exam. Certificate eligibility begins 7 days after the result is published.");
- }catch(err){alert("Could not save exam result: "+(err.message||"Unknown error"));}
-}
-async function loadAdminStudents(){
- const box=$("adminStudentList");box.textContent="Loading student records…";
- try{await requireAdmin();const {data,error}=await db.from("novara_students").select("user_id,student_id,full_name,email,course,status,course_started_at").order("created_at",{ascending:false});if(error)throw error;
- box.innerHTML=(data||[]).map(s=>`<div class="student"><b>${esc(s.full_name)}</b><br>Student ID: ${esc(s.student_id)}<br>Email: ${esc(s.email)}<br>Course: ${esc(s.course)}<br>Status: ${esc(s.status)}<br><button class="danger" onclick="deleteStudent('${esc(s.user_id)}','${esc(s.student_id||"")}')">DELETE STUDENT</button></div>`).join("")||"No student records found.";
- }catch(err){box.textContent=err.message||"Could not load students."}
-}
-async function deleteStudent(userId,studentId){
- if(!confirm("Permanently delete student "+studentId+" and their NOVARA account, exam records and certificate? This cannot be undone."))return;
- try{await requireAdmin();const {data,error}=await db.rpc("novara_admin_delete_student",{p_user_id:userId});if(error)throw error;alert("Student and related NOVARA records deleted.");await loadAdminStudents();await loadDashboard();}
- catch(err){alert("Delete failed: "+(err.message||"Unknown error"));}
-}
-
 async function sendPasswordReset(){
  const email=$("adminEmail").value.trim(),msg=$("adminMessage");
  if(!email){msg.textContent="Enter your admin email first.";return}
@@ -410,81 +245,43 @@ async function saveNewPassword(e){
   $("adminPanel").classList.add("hidden");
  }catch(err){msg.textContent=err.message||"Could not update password."}
 }
-async function adminLogin(e){
- e.preventDefault();const btn=$("adminLoginButton"),msg=$("adminMessage");btn.disabled=true;msg.textContent="Verifying admin credentials and role…";
- try{
-  await db.auth.signOut();adminSession=false;
-  const {data,error}=await db.auth.signInWithPassword({email:$("adminEmail").value.trim(),password:$("adminPassword").value});
-  if(error)throw error;
-  const {data:allowed,error:checkError}=await db.from("novara_admins").select("user_id").eq("user_id",data.user.id).maybeSingle();
-  if(checkError)throw checkError;
-  if(!allowed){await db.auth.signOut();throw new Error("Access denied. This Gmail is not registered as a NOVARA admin.");}
-  adminSession=true;$("adminPassword").value="";$("adminPanel").classList.remove("hidden");$("adminLoginForm").classList.add("hidden");
-  msg.textContent="Admin access verified.";await loadDashboard();await loadApplications();await loadExamRequests();await loadAdminStudents();
- }catch(err){await db.auth.signOut();adminSession=false;$("adminPanel").classList.add("hidden");$("adminLoginForm").classList.remove("hidden");msg.textContent=err.message||"Login failed. Check your admin details.";}
- finally{btn.disabled=false;}
-}
-async function adminLogout(){await db.auth.signOut();adminSession=false;$("adminPanel").classList.add("hidden");$("adminLoginForm").classList.remove("hidden");$("adminPassword").value="";$("adminMessage").textContent="You have been signed out. Sign in again to manage NOVARA."}
+async function adminLogin(e){e.preventDefault();const btn=$("adminLoginButton"),msg=$("adminMessage");btn.disabled=true;msg.textContent="Signing in securely…";try{const {data,error}=await db.auth.signInWithPassword({email:$("adminEmail").value.trim(),password:$("adminPassword").value});if(error)throw error;const {data:allowed,error:checkError}=await db.from("novara_admins").select("user_id").eq("user_id",data.user.id).maybeSingle();if(checkError)throw checkError;if(!allowed){await db.auth.signOut();throw new Error("This account is not registered as a NOVARA admin.")};adminSession=true;$("adminNavButton").classList.remove("hidden");$("adminPassword").value="";$("adminPanel").classList.remove("hidden");msg.textContent="Admin access verified.";await loadDashboard();await loadApplications();await loadExamRequests()}catch(err){msg.textContent=err.message||"Login failed. Check your details and try again."}finally{btn.disabled=false}}
+async function adminLogout(){await db.auth.signOut();adminSession=false;$("adminNavButton").classList.add("hidden");$("adminPanel").classList.add("hidden");$("adminPassword").value="";$("adminMessage").textContent="You have been signed out."}
 async function requireAdmin(){const {data:{user}}=await db.auth.getUser();if(!user||!adminSession)throw new Error("Please sign in as a NOVARA admin first.");const {data,error}=await db.from("novara_admins").select("user_id").eq("user_id",user.id).maybeSingle();if(error)throw error;if(!data)throw new Error("Admin permission was not found.")}
-async function loadDashboard(){
+async function loadApplications(){
+ const box=$("applicationList");box.textContent="Loading applications…";
  try{
   await requireAdmin();
-  const [{data:students,error:sErr},{data:certs,error:cErr}]=await Promise.all([
-   db.from("novara_students").select("student_id"),
-   db.from("novara_certificates").select("certificate_id")
-  ]);
-  if(sErr)throw sErr;if(cErr)throw cErr;
-  $("total").textContent=(students||[]).length;
-  $("certTotal").textContent=(certs||[]).length;
- }catch(err){$("total").textContent="—";$("certTotal").textContent="—";$("adminMessage").textContent=err.message||"Could not load dashboard totals."}
+  const {data,error}=await db.from("novara_students").select("full_name,email,student_id,course,phone,status,created_at").eq("status","Pending").order("created_at",{ascending:false});
+  if(error)throw error;
+  box.innerHTML=(data||[]).map(a=>`<div class="student"><b>${esc(a.full_name)}</b><br>Email: ${esc(a.email||"Not supplied")}<br>Phone: ${esc(a.phone||"Not supplied")}<br>Course: ${esc(a.course)}<br>Application ID: ${esc(a.student_id)}<br>Status: <b>Pending</b><br><button onclick="reviewApplication('${esc(a.student_id)}','Accepted')">ACCEPT</button><button class="danger" onclick="reviewApplication('${esc(a.student_id)}','Rejected')">REJECT</button></div>`).join("")||"No new applications.";
+ }catch(err){box.textContent=err.message||"Could not load applications."}
 }
-
-
-
-async function makeCertificate(){
- const out=$("certMessage");
+async function reviewApplication(studentId,status){
  try{
   await requireAdmin();
-  const id=$("certStudent").value.trim();if(!id)throw new Error("Enter a student ID.");
-  const {data:s,error:sErr}=await db.from("novara_students").select("full_name,student_id,user_id,course,status").eq("student_id",id).maybeSingle();
-  if(sErr)throw sErr;if(!s)throw new Error("Student record not found.");
-  const {data:exam,error:examError}=await db.from("novara_exam_results").select("result,score,published_at").eq("user_id",s.user_id).lte("published_at",new Date().toISOString()).order("published_at",{ascending:false}).limit(1);
-  if(examError)throw examError;
-  if(!exam||!exam[0]||exam[0].result!=="Passed")throw new Error("A published Passed exam result is required before issuing a certificate.");
-  const eligibleAt=new Date(new Date(exam[0].published_at).getTime()+7*86400000);if(Date.now()<eligibleAt.getTime())throw new Error("Certificate can be issued 7 days after result publication: "+eligibleAt.toLocaleString());
-  const {data:existingCert,error:existingError}=await db.from("novara_certificates").select("certificate_id").eq("user_id",s.user_id).limit(1);if(existingError)throw existingError;if(existingCert&&existingCert.length)throw new Error("This student already has a certificate: "+existingCert[0].certificate_id);
-  const certificateId="NOVA-"+Date.now().toString(36).toUpperCase();
-  const row={certificate_id:certificateId,student_id:s.student_id,user_id:s.user_id,course:s.course,status:"Issued"};
-  const {error}=await db.from("novara_certificates").insert(row);if(error)throw error;
-  out.textContent="Certificate issued: "+certificateId;
-  displayCert({id:certificateId,name:s.full_name,course:s.course,date:new Date().toLocaleDateString()});
-  show("certificateSection");await loadDashboard();
- }catch(err){out.textContent=err.message||"Could not issue certificate."}
+  const changes={status};
+  if(status==="Accepted")changes.course_started_at=new Date().toISOString();
+  const {error}=await db.from("novara_students").update(changes).eq("student_id",studentId).eq("status","Pending");
+  if(error)throw error;
+  await loadApplications();await loadDashboard();
+  alert(status==="Accepted"?"Application accepted. The student can now sign in and access the course.":"Application rejected.");
+ }catch(err){alert(err.message||"Could not update application.")}
 }
+async function loadDashboard(){try{await requireAdmin();const [{data:students,error:sErr},{data:certs,error:cErr}]=await Promise.all([db.from("novara_students").select("full_name,student_id,course,status,created_at").order("created_at",{ascending:false}),db.from("novara_certificates").select("certificate_id,student_id,course,issued_at,status").order("issued_at",{ascending:false})]);if(sErr)throw sErr;if(cErr)throw cErr;$("total").textContent=students.length;$("certTotal").textContent=certs.length;$("studentList").innerHTML=students.map(s=>`<div class="student"><b>${esc(s.full_name)}</b><br>ID: ${esc(s.student_id)}<br>Course: ${esc(s.course)}<br>Status: ${esc(s.status)}<br><button onclick="markDone('${esc(s.student_id)}')">MARK COMPLETED</button></div>`).join("")||"No student records yet."}catch(err){$("studentList").textContent=err.message||"Could not load records."}}
+async function addStudent(e){e.preventDefault();const out=$("addMessage");try{await requireAdmin();const row={full_name:$("newName").value.trim(),student_id:$("newStudentId").value.trim(),course:$("newCourse").value,status:"Registered"};const {error}=await db.from("novara_students").insert(row);if(error)throw error;out.textContent="Student record saved securely.";$("newName").value="";$("newStudentId").value="";await loadDashboard()}catch(err){out.textContent=err.message||"Could not add student."}}
+async function markDone(id){try{await requireAdmin();const {error}=await db.from("novara_students").update({status:"Completed"}).eq("student_id",id);if(error)throw error;await loadDashboard()}catch(err){alert(err.message||"Could not update student.")}}
+async function makeCertificate(){const out=$("certMessage");try{await requireAdmin();const id=$("certStudent").value.trim();if(!id)throw new Error("Enter a student ID.");const {data:s,error:sErr}=await db.from("novara_students").select("full_name,student_id,course,status").eq("student_id",id).maybeSingle();if(sErr)throw sErr;if(!s)throw new Error("Student record not found.");if(s.status!=="Completed")throw new Error("Mark the student Completed first.");const certificateId="NOVA-"+Date.now().toString(36).toUpperCase();const row={certificate_id:certificateId,student_id:s.student_id,course:s.course,status:"Issued"};const {error}=await db.from("novara_certificates").insert(row);if(error)throw error;out.textContent="Certificate issued: "+certificateId;displayCert({id:certificateId,name:s.full_name,course:s.course,date:new Date().toLocaleDateString()});show("certificateSection");await loadDashboard()}catch(err){out.textContent=err.message||"Could not issue certificate."}}
 function displayCert(c){$("certificate").innerHTML=`<p>NOVARA INSTITUTE OF TECHNOLOGY</p><div class="seal">NOVARA<br>INSTITUTE</div><h1>CERTIFICATE OF COMPLETION</h1><p>This certificate is presented to</p><h1>${esc(c.name)}</h1><p>For completing the independent learning programme</p><h2>${esc(c.course)}</h2><p>Certificate ID: ${esc(c.id)}</p><p>Date issued: ${esc(c.date)}</p><br><p>Founder &amp; Director</p><h3>FEYSAL ALI MOHAMED</h3><hr><p><b>Independent, non-accredited learning programme.</b></p><p>This confirms completion of NOVARA's own course. It is not a government, university or third-party professional qualification.</p>`}
 async function verifyCertificate(){const out=$("verifyResult"),id=$("verifyID").value.trim();out.textContent="Checking certificate…";if(!id){out.textContent="Enter a certificate ID.";return}try{const {data,error}=await db.rpc("novara_verify_certificate",{p_certificate_id:id});if(error)throw error;const c=Array.isArray(data)?data[0]:data;if(!c){out.innerHTML="<p>No valid certificate record found.</p>";return}out.innerHTML=`<div class="student"><h3>VALID CERTIFICATE RECORD</h3><p>Student ID: ${esc(c.student_id)}</p><p>Course: ${esc(c.course)}</p><p>Issued: ${esc(c.issued_at||"Recorded")}</p><p>Status: ${esc(c.status)}</p></div>`}catch(err){out.textContent="Verification setup is not complete yet. Admin can still manage records. Details: "+(err.message||"Unknown error")}}
 fillSelects();renderCourses();
+if(location.hash==="#admin")show("admin");
 db.auth.onAuthStateChange((event)=>{
  if(event==="PASSWORD_RECOVERY"){
   $("newPasswordBox").classList.remove("hidden");
   $("adminMessage").textContent="Recovery link accepted. Set your new password below.";
  }
 });
-// Never restore the admin dashboard automatically on page load.
-// A fresh email/password sign-in is required in each new page session.
-(async()=>{
- if(location.hash==="#admin") show("admin");
- else show("home");
- try{
-  const {data:{user}}=await db.auth.getUser();
-  if(user){
-   const {data:admin}=await db.from("novara_admins").select("user_id").eq("user_id",user.id).maybeSingle();
-   if(admin){await db.auth.signOut();}
-  }
- }catch(_){/* Public pages remain available if the session check is unavailable. */}
-})();
-window.addEventListener("hashchange",()=>{
- if(location.hash==="#admin") show("admin");
- else if(location.hash==="") show("home");
-});
+// Restore a valid existing admin session only after checking its database role.
+(async()=>{try{const {data:{user}}=await db.auth.getUser();if(user){const {data}=await db.from("novara_admins").select("user_id").eq("user_id",user.id).maybeSingle();if(data){adminSession=true;$("adminNavButton").classList.remove("hidden");$("adminPanel").classList.remove("hidden");await loadDashboard();await loadExamRequests()}}}catch(_){}})();
 </script></body></html>
