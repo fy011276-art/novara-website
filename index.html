@@ -58,7 +58,7 @@ footer{text-align:center;padding:25px;color:#899bb2}
 <section id="student" class="hidden">
 <div class="card"><h2>NOVARA STUDENT ACCOUNT</h2><p>Create an account using your email, then sign in to access your selected course.</p>
 <div id="studentAuthBox">
-<p>Already registered? Sign in below. New students should use the APPLY page to create an account.</p><form onsubmit="studentLogin(event)"><h3>STUDENT LOGIN</h3><label>Email</label><input id="loginEmail" type="email" required autocomplete="username"><label>Password</label><input id="loginPassword" type="password" required autocomplete="current-password"><button id="studentLoginButton" type="submit">SIGN IN</button></form>
+<p>Already registered? Sign in below. New students should use the APPLY page to create an account.</p><form onsubmit="studentLogin(event)"><h3>STUDENT LOGIN</h3><label>Gmail</label><input id="loginEmail" type="email" required autocomplete="username"><label>Password</label><input id="loginPassword" type="password" required autocomplete="current-password"><button id="studentLoginButton" type="submit">SIGN IN</button></form>
 <p id="studentAuthMessage" role="status"></p></div>
 <div id="studentDashboard" class="hidden"><h2>MY LEARNING DASHBOARD</h2><p id="studentWelcome"></p><div class="tile" id="studentCourseInfo"></div><div class="tile"><h3>30-DAY COURSE PERIOD</h3><p id="courseTimer"></p><button id="requestExamButton" onclick="requestStudentExam()">REQUEST EXAM</button><p id="examRequestMessage" role="status"></p></div><div class="card"><h3>MY COURSE LESSONS</h3><div id="lessonList"></div></div><button class="secondary" onclick="studentLogout()">LOG OUT</button></div>
 </div></section>
